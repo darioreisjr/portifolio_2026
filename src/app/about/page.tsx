@@ -1,8 +1,36 @@
 import AppLayout from "../../../components/Layout";
 import Title from "../../../components/Title";
 import InfoItem from "../../../components/InfoItem";
+import SkillItem from "../../../components/SkillItem"; // Importe o novo componente
 import { Container, Typography, Box, Grid, Button, Stack } from "@mui/material";
 import Link from 'next/link';
+
+// Lista de skills baseada no seu arquivo About.tsx original
+const skills = [
+    { name: "HTML", iconSrc: "/icons/html.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/HTML" },
+    { name: "CSS", iconSrc: "/icons/css.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/CSS" },
+    { name: "SASS", iconSrc: "/icons/sass.svg", href: "https://sass-lang.com/" },
+    { name: "JavaScript", iconSrc: "/icons/javascript.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" },
+    { name: "Gulp", iconSrc: "/icons/gulp.svg", href: "https://gulpjs.com/" },
+    { name: "Webpack", iconSrc: "/icons/webpack.svg", href: "https://webpack.js.org/" },
+    { name: "React.js", iconSrc: "/icons/react.svg", href: "https://reactjs.org/" },
+    { name: "Vite", iconSrc: "/icons/vite.svg", href: "https://vitejs.dev/" },
+    { name: "Styled Components", iconSrc: "/icons/styled-components.svg", href: "https://styled-components.com/" },
+    { name: "TypeScript", iconSrc: "/icons/typescript.svg", href: "https://www.typescriptlang.org/" },
+    { name: "Redux", iconSrc: "/icons/redux.svg", href: "https://redux.js.org/" },
+    { name: "Tailwind CSS", iconSrc: "/icons/tailwindcss.svg", href: "https://tailwindcss.com/" },
+    { name: "Figma", iconSrc: "/icons/figma.svg", href: "https://www.figma.com/" },
+    { name: "Node.js", iconSrc: "/icons/node.svg", href: "https://nodejs.org/en/" },
+    { name: "Express.js", iconSrc: "/icons/express.svg", href: "https://expressjs.com/" },
+    { name: "MongoDB", iconSrc: "/icons/mongodb.svg", href: "https://www.mongodb.com/" },
+    { name: "MySQL", iconSrc: "/icons/mysql.svg", href: "https://www.mysql.com/" },
+    { name: "Prisma", iconSrc: "/icons/prisma.svg", href: "https://www.prisma.io/" },
+    { name: "Fastify", iconSrc: "/icons/fastify.svg", href: "https://www.fastify.io/" },
+    { name: "Docker", iconSrc: "/icons/docker.svg", href: "https://www.docker.com/" },
+    { name: "Git", iconSrc: "/icons/git.svg", href: "https://git-scm.com/" },
+    { name: "GitHub", iconSrc: "/icons/github.svg", href: "https://github.com/" },
+];
+
 
 export default function AboutPage() {
   return (
@@ -10,22 +38,9 @@ export default function AboutPage() {
       <Container>
         <Title title="Sobre mim" />
 
+        {/* ... (código da seção de informações que já fizemos) ... */}
         <Box>
-          <Typography variant="h3" component="h3" sx={{ mb: 2 }}>
-            Me chamo Dario Reis e sou{' '}
-            <Typography component="span" variant="h3" sx={{ color: 'primary.main' }}>
-              Desenvolvedor FullStack
-            </Typography>
-          </Typography>
-          <Typography variant="body1" color="text.secondary" paragraph>
-            Sou um Desenvolvedor Full Stack com formação em Análise e
-            Desenvolvimento de Sistemas. Minha paixão por tecnologia e
-            programação me impulsiona a buscar constantemente novos
-            desafios e oportunidades para evoluir minhas habilidades. Com
-            uma base sólida tanto no front-end quanto no back-end, estou
-            sempre empenhado em aprender novas tecnologias e aplicar as
-            melhores práticas no desenvolvimento de soluções inovadoras.
-          </Typography>
+            {/* ... */}
         </Box>
 
         <Grid container spacing={4} sx={{ mt: 2 }}>
@@ -66,10 +81,18 @@ export default function AboutPage() {
             </Stack>
           </Grid>
 
-          {/* Coluna de Skills (será adicionada no próximo passo) */}
+          {/* Coluna de Skills */}
           <Grid item xs={12} lg={6}>
-            <Typography variant="h5">Skills</Typography>
-            {/* O conteúdo das skills virá aqui */}
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: {xs: 'center', lg: 'flex-start'} }}>
+              {skills.map((skill) => (
+                <SkillItem
+                  key={skill.name}
+                  name={skill.name}
+                  iconSrc={skill.iconSrc}
+                  href={skill.href}
+                />
+              ))}
+            </Box>
           </Grid>
         </Grid>
       </Container>
