@@ -1,14 +1,16 @@
 'use client';
 import React from 'react';
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme, useMediaQuery } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import WorkIcon from '@mui/icons-material/Work';
 import MailIcon from '@mui/icons-material/Mail';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import Logo from './Logo'; // Importe o logo
 
-const drawerWidth = 270; // Largura da sua sidebar (16.875rem)
+const drawerWidth = 270;
 
 const navItems = [
   { text: 'Início', icon: <HomeIcon />, href: '/' },
@@ -19,45 +21,63 @@ const navItems = [
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+
+  // Lógica para sidebar móvel (não implementada, mas estrutura está aqui)
+  // const [mobileOpen, setMobileOpen] = useState(false);
+  // const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+
+  const drawerContent = (
+    <>
+      <Logo />
+      <Box sx={{ mt: '150px' }}>
+        <List>
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <ListItem key={item.text} disablePadding>
+                <ListItemButton component={Link} href={item.href} selected={isActive}>
+                  <ListItemIcon sx={{ color: isActive ? 'primary.main' : 'text.secondary' }}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.text} sx={{ color: isActive ? 'primary.main' : 'text.primary' }} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+        </List>
+      </Box>
+    </>
+  );
+
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer
         variant="permanent"
         sx={{
+          display: { xs: 'none', lg: 'block' },
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            backgroundColor: 'background.paper', // Usa a cor do tema
-            borderRight: '1px solid rgba(0, 0, 0, 0.12)'
+            backgroundColor: 'background.paper',
+            borderRight: `1px solid ${theme.palette.divider}`
           },
         }}
       >
-        <Box sx={{ overflow: 'auto', mt: 10 }}> {/* Margem para o Logo */}
-            {/* Adicionaremos o Logo e o Toggle aqui no futuro */}
-          <List>
-            {navItems.map((item) => (
-              <ListItem key={item.text} disablePadding>
-                <ListItemButton component={Link} href={item.href}>
-                  <ListItemIcon sx={{color: 'text.secondary'}}>
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+        {drawerContent}
       </Drawer>
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3, // padding
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          p: 3,
+          width: { lg: `calc(100% - ${drawerWidth}px)` },
           minHeight: '100vh',
-          backgroundColor: 'background.default' // Usa a cor do tema
+          backgroundColor: 'background.default'
         }}
       >
         {children}
