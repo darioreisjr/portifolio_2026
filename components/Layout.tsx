@@ -1,14 +1,20 @@
+// components/Layout.tsx
 'use client';
-import React from 'react';
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme, useMediaQuery } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText,
+  useTheme, useMediaQuery, Fab
+} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import WorkIcon from '@mui/icons-material/Work';
 import MailIcon from '@mui/icons-material/Mail';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close'; // Ícone de fechar
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Logo from './Logo'; // Importe o logo
+import Logo from './Logo';
 
 const drawerWidth = 270;
 
@@ -23,11 +29,16 @@ const navItems = [
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
-  // Lógica para sidebar móvel (não implementada, mas estrutura está aqui)
-  // const [mobileOpen, setMobileOpen] = useState(false);
-  // const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const [tabletDrawerOpen, setTabletDrawerOpen] = useState(false);
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
+
+  const handleTabletDrawerToggle = () => setTabletDrawerOpen(!tabletDrawerOpen);
+  const handleMobileDrawerToggle = () => setMobileDrawerOpen(!mobileDrawerOpen);
 
   const drawerContent = (
     <>
@@ -38,7 +49,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             const isActive = pathname === item.href;
             return (
               <ListItem key={item.text} disablePadding>
-                <ListItemButton component={Link} href={item.href} selected={isActive}>
+                <ListItemButton
+                  component={Link}
+                  href={item.href}
+                  selected={isActive}
+                  onClick={() => {
+                    if (isTablet) setTabletDrawerOpen(false);
+                    if (isMobile) setMobileDrawerOpen(false);
+                  }}
+                >
                   <ListItemIcon sx={{ color: isActive ? 'primary.main' : 'text.secondary' }}>
                     {item.icon}
                   </ListItemIcon>
@@ -54,34 +73,126 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Drawer
-        variant="permanent"
-        sx={{
-          display: { xs: 'none', lg: 'block' },
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-            backgroundColor: 'background.paper',
-            borderRight: `1px solid ${theme.palette.divider}`
-          },
-        }}
-      >
-        {drawerContent}
-      </Drawer>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { lg: `calc(100% - ${drawerWidth}px)` },
-          minHeight: '100vh',
-          backgroundColor: 'background.default'
-        }}
-      >
-        {children}
-      </Box>
+      {/* ========== LAYOUT DESKTOP ========== */}
+      {isDesktop && (
+        <>
+          <Drawer
+            variant="permanent"
+            sx={{
+              width: drawerWidth,
+              flexShrink: 0,
+              '& .MuiDrawer-paper': {
+                width: drawerWidth,
+                boxSizing: 'border-box',
+                backgroundColor: 'background.paper',
+                borderRight: `1px solid ${theme.palette.divider}`,
+              },
+            }}
+          >
+            {drawerContent}
+          </Drawer>
+          <Box component="main" sx={{ flexGrow: 1, p: 3, marginLeft: `${drawerWidth}px` }}>
+            {children}
+          </Box>
+        </>
+      )}
+
+      {/* ========== LAYOUT TABLET ========== */}
+      {isTablet && (
+        <>
+          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            {children}
+          </Box>
+          <Fab
+            aria-label="open drawer"
+            onClick={handleTabletDrawerToggle}
+            sx={{
+              position: 'fixed',
+              top: 16,
+              left: 16,
+              borderRadius: 2,
+              backgroundColor: 'background.paper', // Background segue o tema light/dark
+              color: 'primary.main', // Cor do ícone segue a cor primária do tema
+              '&:hover': {
+                backgroundColor: 'action.hover'
+              }
+            }}
+          >
+            <MenuIcon />
+          </Fab>
+          {tabletDrawerOpen && ( // Botão de fechar só aparece quando o menu está aberto
+            <Fab
+                aria-label="close drawer"
+                onClick={handleTabletDrawerToggle}
+                sx={{
+                    position: 'fixed',
+                    top: 16,
+                    left: drawerWidth + 16, // Posição à direita do menu
+                    borderRadius: 2,
+                    zIndex: theme.zIndex.drawer + 1, // Para ficar sobre o overlay
+                    backgroundColor: 'background.paper',
+                    color: 'primary.main',
+                    transition: 'left 0.3s ease',
+                    '&:hover': {
+                        backgroundColor: 'action.hover'
+                    }
+                }}
+            >
+                <CloseIcon />
+            </Fab>
+          )}
+          <Drawer
+            variant="temporary"
+            anchor="left"
+            open={tabletDrawerOpen}
+            onClose={handleTabletDrawerToggle}
+            sx={{ '& .MuiDrawer-paper': { width: drawerWidth } }}
+          >
+            {drawerContent}
+          </Drawer>
+        </>
+      )}
+
+      {/* ========== LAYOUT MOBILE ========== */}
+      {isMobile && (
+        <>
+          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            {children}
+          </Box>
+          <Fab
+            aria-label="open menu"
+            onClick={handleMobileDrawerToggle}
+            sx={{
+              position: 'fixed',
+              bottom: 16,
+              right: 16,
+              borderRadius: 2,
+              backgroundColor: 'background.paper',
+              color: 'primary.main',
+              '&:hover': {
+                backgroundColor: 'action.hover'
+              }
+            }}
+          >
+            <MenuIcon />
+          </Fab>
+          <Drawer
+            anchor="bottom"
+            open={mobileDrawerOpen}
+            onClose={handleMobileDrawerToggle}
+            sx={{
+              '& .MuiDrawer-paper': {
+                height: 'auto',
+                maxHeight: '80%',
+                borderTopLeftRadius: 16,
+                borderTopRightRadius: 16,
+              },
+            }}
+          >
+            {drawerContent}
+          </Drawer>
+        </>
+      )}
     </Box>
   );
 }
