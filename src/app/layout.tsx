@@ -1,8 +1,10 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme/theme';
+import { ModalProvider } from "../../context/ModalContext"; // Importe o Provider
 
 export const metadata: Metadata = {
   title: "Dario Reis | FullStack",
@@ -17,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <head>
-        {/* Adicione esta linha para importar o Font Awesome */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -29,8 +30,10 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
+            <ModalProvider> {/* Envolva com o Provider */}
+              <CssBaseline />
+              {children}
+            </ModalProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
