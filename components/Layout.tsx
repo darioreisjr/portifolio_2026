@@ -43,16 +43,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const drawerContent = (
     <>
       <Logo />
-      {/* Container Flex para centralizar a lista */}
-      <Box
-        sx={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center', // Centraliza a lista verticalmente
-        }}
-      >
-        <List sx={{ mt: 8 }}> {/* Margem no topo para não sobrepor o logo */}
+      <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <List sx={{ mt: 8 }}>
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -64,6 +56,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   onClick={() => {
                     if (isTablet) setTabletDrawerOpen(false);
                     if (isMobile) setMobileDrawerOpen(false);
+                  }}
+                  sx={{
+                    // Estilos para o estado de HOVER
+                    '&:hover': {
+                      backgroundColor: theme.palette.primary.main + '20', // Cor primária com 12.5% de opacidade
+                    },
+                    // Estilos para o estado SELECIONADO (ATIVO)
+                    '&.Mui-selected': {
+                      backgroundColor: 'transparent', // Remove o fundo padrão do item selecionado
+                      '&:hover': {
+                         backgroundColor: theme.palette.primary.main + '20',
+                      }
+                    },
                   }}
                 >
                   <ListItemIcon sx={{ color: isActive ? 'primary.main' : 'text.secondary' }}>
