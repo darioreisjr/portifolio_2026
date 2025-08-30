@@ -2,6 +2,9 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import Link from 'next/link';
+import { Clicker_Script } from 'next/font/google';
+
+const clickerScript = Clicker_Script({ weight: ['400'], subsets: ['latin'], display: 'swap' });
 
 export default function Logo() {
   return (
@@ -9,6 +12,7 @@ export default function Logo() {
       <Typography
         component={Link}
         href="/"
+        variant="h4"
         sx={{
           color: 'text.primary',
           fontWeight: 600,
@@ -17,6 +21,8 @@ export default function Logo() {
           letterSpacing: '5px',
           position: 'relative',
           textDecoration: 'none',
+          display: 'inline-block',
+          whiteSpace: 'nowrap',
           '&::before': {
             content: '""',
             position: 'absolute',
@@ -41,7 +47,16 @@ export default function Logo() {
           },
         }}
       >
-        <Typography component="span" sx={{ fontFamily: 'Clicker Script', fontSize: '2.5rem' }}>
+        <Typography
+          component="span"
+          sx={{
+            fontFamily: clickerScript.style.fontFamily,
+            fontSize: '2.5rem',
+            lineHeight: 1,
+            display: 'inline-block',
+            mr: '2px',
+          }}
+        >
           R
         </Typography>
         eis
