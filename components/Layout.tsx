@@ -11,7 +11,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import WorkIcon from '@mui/icons-material/Work';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close'; // Ícone de fechar
+import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
@@ -43,8 +43,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const drawerContent = (
     <>
       <Logo />
-      <Box sx={{ mt: '150px' }}>
-        <List>
+      {/* Container Flex para centralizar a lista */}
+      <Box
+        sx={{
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center', // Centraliza a lista verticalmente
+        }}
+      >
+        <List sx={{ mt: 8 }}> {/* Margem no topo para não sobrepor o logo */}
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -107,46 +115,29 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             aria-label="open drawer"
             onClick={handleTabletDrawerToggle}
             sx={{
-              position: 'fixed',
-              top: 16,
-              left: 16,
-              borderRadius: 2,
-              backgroundColor: 'background.paper', // Background segue o tema light/dark
-              color: 'primary.main', // Cor do ícone segue a cor primária do tema
-              '&:hover': {
-                backgroundColor: 'action.hover'
-              }
+              position: 'fixed', top: 16, left: 16, borderRadius: 2,
+              backgroundColor: 'background.paper', color: 'primary.main',
+              '&:hover': { backgroundColor: 'action.hover' }
             }}
           >
             <MenuIcon />
           </Fab>
-          {tabletDrawerOpen && ( // Botão de fechar só aparece quando o menu está aberto
+          {tabletDrawerOpen && (
             <Fab
-                aria-label="close drawer"
-                onClick={handleTabletDrawerToggle}
+                aria-label="close drawer" onClick={handleTabletDrawerToggle}
                 sx={{
-                    position: 'fixed',
-                    top: 16,
-                    left: drawerWidth + 16, // Posição à direita do menu
-                    borderRadius: 2,
-                    zIndex: theme.zIndex.drawer + 1, // Para ficar sobre o overlay
-                    backgroundColor: 'background.paper',
-                    color: 'primary.main',
-                    transition: 'left 0.3s ease',
-                    '&:hover': {
-                        backgroundColor: 'action.hover'
-                    }
+                    position: 'fixed', top: 16, left: drawerWidth + 16, borderRadius: 2,
+                    zIndex: theme.zIndex.drawer + 1, backgroundColor: 'background.paper',
+                    color: 'primary.main', transition: 'left 0.3s ease',
+                    '&:hover': { backgroundColor: 'action.hover' }
                 }}
             >
                 <CloseIcon />
             </Fab>
           )}
           <Drawer
-            variant="temporary"
-            anchor="left"
-            open={tabletDrawerOpen}
-            onClose={handleTabletDrawerToggle}
-            sx={{ '& .MuiDrawer-paper': { width: drawerWidth } }}
+            variant="temporary" anchor="left" open={tabletDrawerOpen}
+            onClose={handleTabletDrawerToggle} sx={{ '& .MuiDrawer-paper': { width: drawerWidth } }}
           >
             {drawerContent}
           </Drawer>
@@ -160,31 +151,20 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             {children}
           </Box>
           <Fab
-            aria-label="open menu"
-            onClick={handleMobileDrawerToggle}
+            aria-label="open menu" onClick={handleMobileDrawerToggle}
             sx={{
-              position: 'fixed',
-              bottom: 16,
-              right: 16,
-              borderRadius: 2,
-              backgroundColor: 'background.paper',
-              color: 'primary.main',
-              '&:hover': {
-                backgroundColor: 'action.hover'
-              }
+              position: 'fixed', bottom: 16, right: 16, borderRadius: 2,
+              backgroundColor: 'background.paper', color: 'primary.main',
+              '&:hover': { backgroundColor: 'action.hover' }
             }}
           >
             <MenuIcon />
           </Fab>
           <Drawer
-            anchor="bottom"
-            open={mobileDrawerOpen}
-            onClose={handleMobileDrawerToggle}
+            anchor="bottom" open={mobileDrawerOpen} onClose={handleMobileDrawerToggle}
             sx={{
               '& .MuiDrawer-paper': {
-                height: 'auto',
-                maxHeight: '80%',
-                borderTopLeftRadius: 16,
+                height: 'auto', maxHeight: '80%', borderTopLeftRadius: 16,
                 borderTopRightRadius: 16,
               },
             }}
