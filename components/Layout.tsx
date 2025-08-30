@@ -44,7 +44,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <>
       <Logo />
       <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <List sx={{ mt: 8 }}>
+        {/* A alteração está AQUI, na propriedade 'px' (padding horizontal) */}
+        <List sx={{ mt: 8, px: 3 }}>
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -58,13 +59,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     if (isMobile) setMobileDrawerOpen(false);
                   }}
                   sx={{
-                    // Estilos para o estado de HOVER
+                    borderRadius: 2, // Adiciona bordas arredondadas para um visual mais suave
                     '&:hover': {
-                      backgroundColor: theme.palette.primary.main + '20', // Cor primária com 12.5% de opacidade
+                      backgroundColor: theme.palette.primary.main + '20',
                     },
-                    // Estilos para o estado SELECIONADO (ATIVO)
                     '&.Mui-selected': {
-                      backgroundColor: 'transparent', // Remove o fundo padrão do item selecionado
+                      backgroundColor: 'transparent',
                       '&:hover': {
                          backgroundColor: theme.palette.primary.main + '20',
                       }
