@@ -1,7 +1,7 @@
 'use client';
 import AppLayout from "../../../components/Layout";
 import Title from "../../../components/Title";
-import ServiceCard from "../../../components/ServiceCard"; // Importe o novo componente
+import ServiceCard from "../../../components/ServiceCard";
 import { Container, Grid } from "@mui/material";
 
 const servicesData = [
@@ -22,7 +22,7 @@ const servicesData = [
 export default function ServicesPage() {
     return (
         <AppLayout>
-            <Container>
+            <Container sx={{ py: 6, px: 3 }}>
                 <Title title="Serviços" />
                 <Grid container spacing={4}>
                     {servicesData.map((service, index) => (

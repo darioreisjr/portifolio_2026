@@ -1,22 +1,39 @@
 'use client';
 import React, { useState } from 'react';
 import AppLayout from '../../../components/Layout';
-import Title from '../../../components/Title';
 import ContactInfoItem from '../../../components/ContactInfoItem';
 import {
-  Container, Grid, Typography, Box, TextField, Button, CircularProgress, Alert
+  Container, Grid, Typography, Box, TextField, Button, CircularProgress, Alert,
+  styled, Stack,
+  Paper
 } from '@mui/material';
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Send } from 'lucide-react';
+import { motion } from 'framer-motion';
 
+const AnimatedGradientBackground = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  zIndex: -1,
+  overflow: 'hidden',
+  background: `linear-gradient(135deg, ${theme.palette.background.default}, ${theme.palette.primary.main}33, ${theme.palette.background.default})`,
+  backgroundSize: '200% 200%',
+  animation: 'gradientAnimation 15s ease infinite',
+  '@keyframes gradientAnimation': {
+    '0%': { backgroundPosition: '0% 50%' },
+    '50%': { backgroundPosition: '100% 50%' },
+    '100%': { backgroundPosition: '0% 50%' },
+  },
+}));
+
+// Schema de validação com Zod
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import emailjs from '@emailjs/browser';
 
-// Schema de validação com Zod
 const contactSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório.'),
   email: z.string().min(1, 'Email é obrigatório.').email('Formato de e-mail inválido.'),
@@ -27,147 +44,173 @@ const contactSchema = z.object({
 type ContactFormInputs = z.infer<typeof contactSchema>;
 
 const contactInfo = [
-    { icon: "fa-phone", title: "Celular", subtitle: "(11) 96188-9886", href: "tel:5511961889886", animation: "downUp" },
-    { icon: "fa-envelope", title: "Email", subtitle: "dev.darioreis@gmail.com", href: "mailto:dev.darioreis@gmail.com", animation: "upDown" },
-    { icon: "fa-map-marker-alt", title: "Endereço", subtitle: "São Paulo, SP", animation: "downUp" },
-    { icon: "fa-linkedin", title: "LinkedIn", subtitle: "in/darioreisjr", href: "https://www.linkedin.com/in/darioreisjr", animation: "upDown" }
+  { icon: "phone", title: "Celular", subtitle: "(11) 96188-9886", href: "tel:5511961889886" },
+  { icon: "mail", title: "Email", subtitle: "dev.darioreis@gmail.com", href: "mailto:dev.darioreis@gmail.com" },
+  { icon: "map-pin", title: "Endereço", subtitle: "São Paulo, SP" },
+  { icon: "linkedin", title: "LinkedIn", subtitle: "in/darioreisjr", href: "https://www.linkedin.com/in/darioreisjr" }
 ];
 
+// Variantes de animação para Framer Motion
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    },
+  },
+};
+
+const formVariants = {
+  hidden: { x: 50, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+      delay: 0.5,
+    },
+  },
+};
+
+
 export default function ContactPage() {
-    const [loading, setLoading] = useState(false);
-    const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<ContactFormInputs>({
-        resolver: zodResolver(contactSchema),
-    });
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormInputs>({
+    resolver: zodResolver(contactSchema),
+  });
 
-    const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
-        setLoading(true);
-        setAlert(null);
-
-        const templateParams = {
-            name: data.name,
-            email: data.email,
-            subject: data.subject,
-            message: data.message,
-        };
-
-        try {
-            // Substitua com suas credenciais do EmailJS
-            await emailjs.send(
-                'service_xwv0v93',      // SEU SERVICE ID
-                'template_dev8vpa',     // SEU TEMPLATE ID
-                templateParams,
-                'JsOuTrmFLtfvqGMCr'       // SUA PUBLIC KEY
-            );
-            setAlert({ type: 'success', message: 'Email enviado com sucesso!' });
-            reset();
-        } catch (error) {
-            console.error("Failed to send email:", error);
-            setAlert({ type: 'error', message: 'Ocorreu um erro ao enviar o email.' });
-        } finally {
-            setLoading(false);
-            setTimeout(() => setAlert(null), 5000); // Esconde o alerta após 5 segundos
-        }
-    };
+  const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
+    setLoading(true);
+    setAlert(null);
+    try {
+      await emailjs.send('service_xwv0v93', 'template_dev8vpa', data, 'JsOuTrmFLtfvqGMCr');
+      setAlert({ type: 'success', message: 'Mensagem enviada! Entrarei em contato em breve.' });
+      reset();
+    } catch (error) {
+      setAlert({ type: 'error', message: 'Ocorreu um erro. Tente novamente mais tarde.' });
+    } finally {
+      setLoading(false);
+      setTimeout(() => setAlert(null), 6000);
+    }
+  };
 
   return (
     <AppLayout>
-      <Container>
-        <Title title="Contato" />
-
-        <Box textAlign="center" mb={6}>
-            <Typography variant="h4" sx={{ color: 'primary.main' }}>
-                Você tem alguma pergunta?
-            </Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ textTransform: 'uppercase' }}>
-                Estou ao seu serviço.
-            </Typography>
-        </Box>
-
-        <Grid container spacing={4} mb={8}>
-           {contactInfo.map((item, index) => (
-             <Grid item xs={12} sm={6} md={3} key={index}>
-               <ContactInfoItem {...item} />
-             </Grid>
-           ))}
-        </Grid>
-
-         <Box textAlign="center" mb={4}>
-            <Typography variant="h4">Me mande um email</Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ textTransform: 'uppercase' }}>
-                Minha resposta costuma ser rápida.
-            </Typography>
-        </Box>
-
-        <Box
-          component="form"
-          onSubmit={handleSubmit(onSubmit)}
-          sx={{ maxWidth: '800px', margin: '0 auto' }}
-        >
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Nome"
-                {...register('name')}
-                error={!!errors.name}
-                helperText={errors.name?.message}
-              />
+      <Box sx={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+        <AnimatedGradientBackground />
+        {/* CORREÇÃO AQUI: maxWidth={false} e disableGutters para ocupar todo o espaço */}
+        <Container maxWidth={false} disableGutters sx={{ py: 8 }}>
+          {/* Adicionado padding horizontal (px) aqui para o conteúdo não colar nas bordas */}
+          <Grid container spacing={6} alignItems="center" sx={{ px: { xs: 2, sm: 4, md: 6 } }}>
+            {/* Coluna da Esquerda: Título e Informações de Contato */}
+            <Grid item xs={12} md={5}>
+              <Box
+                component={motion.div}
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <motion.div variants={itemVariants}>
+                  <Typography variant="h2" component="h1" sx={{ fontWeight: 700 }}>
+                    Vamos <Typography component="span" variant="inherit" color="primary">Conversar.</Typography>
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary" sx={{ mt: 1, mb: 4 }}>
+                    Estou sempre aberto a novos projetos, colaborações ou apenas um bate-papo.
+                  </Typography>
+                </motion.div>
+                <Stack spacing={2}>
+                  {contactInfo.map((item, index) => (
+                    <motion.div key={index} variants={itemVariants}>
+                      <ContactInfoItem {...item} />
+                    </motion.div>
+                  ))}
+                </Stack>
+              </Box>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Email"
-                {...register('email')}
-                error={!!errors.email}
-                helperText={errors.email?.message}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Assunto"
-                {...register('subject')}
-                error={!!errors.subject}
-                helperText={errors.subject?.message}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Mensagem"
-                multiline
-                rows={4}
-                {...register('message')}
-                error={!!errors.message}
-                helperText={errors.message?.message}
-              />
-            </Grid>
-            <Grid item xs={12} sx={{ position: 'relative' }}>
-                <Button
-                    type="submit"
-                    variant="contained"
-                    size="large"
-                    disabled={loading}
-                    sx={{ width: { xs: '100%', sm: 'auto'} }}
+
+            {/* Coluna da Direita: Formulário */}
+            <Grid item xs={12} md={7}>
+              <Box
+                component={motion.div}
+                variants={formVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Box textAlign="center" mb={4}>
+                  <Typography variant="h4" component="h2" sx={{ fontWeight: 600 }}>
+                    Envie-me uma mensagem.
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary" sx={{ mt: 1 }}>
+                    Ficarei feliz em responder a todas as suas perguntas.
+                  </Typography>
+                </Box>
+                <Paper
+                  elevation={12}
+                  sx={{
+                    p: { xs: 3, sm: 5 },
+                    borderRadius: 4,
+                    backgroundColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.6)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    width: '100%',
+                  }}
                 >
-                    {loading ? <CircularProgress size={24} /> : 'Enviar Mensagem'}
-                </Button>
+                  <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} sm={6}>
+                        <TextField fullWidth label="Seu Nome" {...register('name')} error={!!errors.name} helperText={errors.name?.message} />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField fullWidth label="Seu Email" {...register('email')} error={!!errors.email} helperText={errors.email?.message} />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField fullWidth label="Assunto" {...register('subject')} error={!!errors.subject} helperText={errors.subject?.message} />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField fullWidth label="Sua Mensagem" multiline rows={5} {...register('message')} error={!!errors.message} helperText={errors.message?.message} />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Button
+                          type="submit" variant="contained" size="large"
+                          disabled={loading}
+                          endIcon={loading ? <CircularProgress size={22} color="inherit" /> : <Send />}
+                          sx={{ width: { xs: '100%', sm: 'auto' }, transition: 'all 0.3s ease' }}
+                        >
+                          Enviar Mensagem
+                        </Button>
+                      </Grid>
+                      {alert && (
+                        <Grid item xs={12}>
+                          <Alert severity={alert.type} sx={{ mt: 2 }}>{alert.message}</Alert>
+                        </Grid>
+                      )}
+                    </Grid>
+                  </Box>
+                </Paper>
+              </Box>
             </Grid>
-             {alert && (
-                 <Grid item xs={12}>
-                     <Alert severity={alert.type}>{alert.message}</Alert>
-                 </Grid>
-             )}
           </Grid>
-        </Box>
-      </Container>
+        </Container>
+      </Box>
     </AppLayout>
   );
 }

@@ -3,34 +3,34 @@ import AppLayout from "../../../components/Layout";
 import Title from "../../../components/Title";
 import InfoItem from "../../../components/InfoItem";
 import SkillItem from "../../../components/SkillItem";
-import TimelineEntry from "../../../components/TimelineEntry"; // Importe o componente da timeline
+import TimelineEntry from "../../../components/TimelineEntry";
 import { Container, Typography, Box, Grid, Button, Stack } from "@mui/material";
-import Timeline from '@mui/lab/Timeline'; // Importe a Timeline principal
+import Timeline from '@mui/lab/Timeline';
 import Link from 'next/link';
 
 const skills = [
-  { name: "HTML", iconSrc: "/icons/html.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/HTML" },
-  { name: "CSS", iconSrc: "/icons/css.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/CSS" },
-  { name: "SASS", iconSrc: "/icons/sass.svg", href: "https://sass-lang.com/" },
-  { name: "JavaScript", iconSrc: "/icons/javascript.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" },
-  { name: "Gulp", iconSrc: "/icons/gulp.svg", href: "https://gulpjs.com/" },
-  { name: "Webpack", iconSrc: "/icons/webpack.svg", href: "https://webpack.js.org/" },
-  { name: "React.js", iconSrc: "/icons/react.svg", href: "https://reactjs.org/" },
-  { name: "Vite", iconSrc: "/icons/vite.svg", href: "https://vitejs.dev/" },
-  { name: "Styled Components", iconSrc: "/icons/styled-components.svg", href: "https://styled-components.com/" },
-  { name: "TypeScript", iconSrc: "/icons/typescript.svg", href: "https://www.typescriptlang.org/" },
-  { name: "Redux", iconSrc: "/icons/redux.svg", href: "https://redux.js.org/" },
-  { name: "Tailwind CSS", iconSrc: "/icons/tailwindcss.svg", href: "https://tailwindcss.com/" },
-  { name: "Figma", iconSrc: "/icons/figma.svg", href: "https://www.figma.com/" },
-  { name: "Node.js", iconSrc: "/icons/node.svg", href: "https://nodejs.org/en/" },
-  { name: "Express.js", iconSrc: "/icons/express.svg", href: "https://expressjs.com/" },
-  { name: "MongoDB", iconSrc: "/icons/mongodb.svg", href: "https://www.mongodb.com/" },
-  { name: "MySQL", iconSrc: "/icons/mysql.svg", href: "https://www.mysql.com/" },
-  { name: "Prisma", iconSrc: "/icons/prisma.svg", href: "https://www.prisma.io/" },
-  { name: "Fastify", iconSrc: "/icons/fastify.svg", href: "https://www.fastify.io/" },
-  { name: "Docker", iconSrc: "/icons/docker.svg", href: "https://www.docker.com/" },
-  { name: "Git", iconSrc: "/icons/git.svg", href: "https://git-scm.com/" },
-  { name: "GitHub", iconSrc: "/icons/github.svg", href: "https://github.com/" },
+    { name: "HTML", iconSrc: "/icons/html.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/HTML" },
+    { name: "CSS", iconSrc: "/icons/css.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/CSS" },
+    { name: "SASS", iconSrc: "/icons/sass.svg", href: "https://sass-lang.com/" },
+    { name: "JavaScript", iconSrc: "/icons/javascript.svg", href: "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" },
+    { name: "Gulp", iconSrc: "/icons/gulp.svg", href: "https://gulpjs.com/" },
+    { name: "Webpack", iconSrc: "/icons/webpack.svg", href: "https://webpack.js.org/" },
+    { name: "React.js", iconSrc: "/icons/react.svg", href: "https://reactjs.org/" },
+    { name: "Vite", iconSrc: "/icons/vite.svg", href: "https://vitejs.dev/" },
+    { name: "Styled Components", iconSrc: "/icons/styled-components.svg", href: "https://styled-components.com/" },
+    { name: "TypeScript", iconSrc: "/icons/typescript.svg", href: "https://www.typescriptlang.org/" },
+    { name: "Redux", iconSrc: "/icons/redux.svg", href: "https://redux.js.org/" },
+    { name: "Tailwind CSS", iconSrc: "/icons/tailwindcss.svg", href: "https://tailwindcss.com/" },
+    { name: "Figma", iconSrc: "/icons/figma.svg", href: "https://www.figma.com/" },
+    { name: "Node.js", iconSrc: "/icons/node.svg", href: "https://nodejs.org/en/" },
+    { name: "Express.js", iconSrc: "/icons/express.svg", href: "https://expressjs.com/" },
+    { name: "MongoDB", iconSrc: "/icons/mongodb.svg", href: "https://www.mongodb.com/" },
+    { name: "MySQL", iconSrc: "/icons/mysql.svg", href: "https://www.mysql.com/" },
+    { name: "Prisma", iconSrc: "/icons/prisma.svg", href: "https://www.prisma.io/" },
+    { name: "Fastify", iconSrc: "/icons/fastify.svg", href: "https://www.fastify.io/" },
+    { name: "Docker", iconSrc: "/icons/docker.svg", href: "https://www.docker.com/" },
+    { name: "Git", iconSrc: "/icons/git.svg", href: "https://git-scm.com/" },
+    { name: "GitHub", iconSrc: "/icons/github.svg", href: "https://github.com/" },
 ];
 
 const educationData = [
@@ -63,14 +63,15 @@ const experienceData = [
   },
 ];
 
+
 export default function AboutPage() {
   return (
     <AppLayout>
-      <Container>
+      <Container sx={{ py: 6, px: 3 }}>
         <Title title="Sobre mim" />
 
         <Box>
-          <Typography variant="h3" component="h3" sx={{ mb: 2, fontSize: { xs: '1.5rem', md: '2rem' } }}>
+           <Typography variant="h3" component="h3" sx={{ mb: 2, fontSize: { xs: '1.5rem', md: '2rem' } }}>
             Me chamo Dario Reis e sou{' '}
             <Typography component="span" variant="h3" sx={{ color: 'primary.main', fontSize: 'inherit' }}>
               Desenvolvedor FullStack
@@ -97,7 +98,7 @@ export default function AboutPage() {
               <Grid item xs={12} sm={6}><InfoItem label="LinkedIn" value="in/darioreisjr" href="https://www.linkedin.com/in/darioreisjr" /></Grid>
               <Grid item xs={12} sm={6}><InfoItem label="GitHub" value="darioreisjr" href="https://github.com/darioreisjr" /></Grid>
             </Grid>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 3 }}>
+            <Stack direction={{xs: 'column', sm: 'row'}} spacing={2} sx={{ mt: 3 }}>
               <Button variant="contained" href="/cv_Dario-Reis_desenvolvedor_full_stack.pdf" download>Baixar CV</Button>
               <Button variant="outlined" component={Link} href="/contact">Contate-me</Button>
             </Stack>
@@ -112,7 +113,6 @@ export default function AboutPage() {
         </Grid>
 
         <Grid container spacing={4} sx={{ mt: 4 }}>
-          {/* Coluna Educação */}
           <Grid item xs={12} md={6}>
             <Typography variant="h4" component="h3" sx={{ mb: 3, fontWeight: 700 }}>Educação</Typography>
             <Timeline position="right">
@@ -122,7 +122,6 @@ export default function AboutPage() {
             </Timeline>
           </Grid>
 
-          {/* Coluna Experiência */}
           <Grid item xs={12} md={6}>
             <Typography variant="h4" component="h3" sx={{ mb: 3, fontWeight: 700 }}>Experiência</Typography>
             <Timeline position="right">

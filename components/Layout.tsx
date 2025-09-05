@@ -1,4 +1,3 @@
-// components/Layout.tsx
 'use client';
 import React, { useState } from 'react';
 import {
@@ -44,7 +43,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <>
       <Logo />
       <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        {/* A alteração está AQUI, na propriedade 'px' (padding horizontal) */}
         <List sx={{ mt: 8, px: 3 }}>
           {navItems.map((item) => {
             const isActive = pathname === item.href;
@@ -59,7 +57,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     if (isMobile) setMobileDrawerOpen(false);
                   }}
                   sx={{
-                    borderRadius: 2, // Adiciona bordas arredondadas para um visual mais suave
+                    borderRadius: 2,
                     '&:hover': {
                       backgroundColor: theme.palette.primary.main + '20',
                     },
@@ -86,7 +84,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      {/* ========== LAYOUT DESKTOP ========== */}
       {isDesktop && (
         <>
           <Drawer
@@ -104,16 +101,17 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           >
             {drawerContent}
           </Drawer>
-          <Box component="main" sx={{ flexGrow: 1, p: 3, marginLeft: `${drawerWidth}px` }}>
+          {/* MUDANÇA AQUI: Removido o p: 3 e adicionado marginLeft */}
+          <Box component="main" sx={{ flexGrow: 1 }}>
             {children}
           </Box>
         </>
       )}
 
-      {/* ========== LAYOUT TABLET ========== */}
       {isTablet && (
         <>
-          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          {/* MUDANÇA AQUI: Removido p: 3 */}
+          <Box component="main" sx={{ flexGrow: 1 }}>
             {children}
           </Box>
           <Fab
@@ -149,10 +147,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </>
       )}
 
-      {/* ========== LAYOUT MOBILE ========== */}
       {isMobile && (
         <>
-          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          {/* MUDANÇA AQUI: Removido p: 3 */}
+          <Box component="main" sx={{ flexGrow: 1 }}>
             {children}
           </Box>
           <Fab

@@ -3,17 +3,17 @@ import React from 'react';
 import AppLayout from "../../../components/Layout";
 import Title from "../../../components/Title";
 import ProjectCard from '../../../components/ProjectCard';
-import ProjectModal from '../../../components/ProjectModal'; // Importe o modal
+import ProjectModal from '../../../components/ProjectModal';
 import { Container, Grid, Typography, Box } from "@mui/material";
 import { projectsSorted } from '../../../data/projects';
-import { useProjectModal } from '../../../context/ModalContext'; // Importe o hook
+import { useProjectModal } from '../../../context/ModalContext';
 
 export default function ProjectsPage() {
-    const { openModal } = useProjectModal(); // Use o hook para obter a função openModal
+    const { openModal } = useProjectModal();
 
     return (
         <AppLayout>
-            <Container>
+            <Container sx={{ py: 6, px: 3 }}>
                 <Title title="Projetos" />
                 <Box sx={{ mb: 4 }}>
                     <Typography variant="h4" component="h2" sx={{ fontWeight: 500 }}>
@@ -25,13 +25,13 @@ export default function ProjectsPage() {
                         <Grid item key={index} xs={12} sm={6} md={4}>
                             <ProjectCard
                                 project={project}
-                                onMoreInfoClick={openModal} // Passe a função openModal diretamente
+                                onMoreInfoClick={openModal}
                             />
                         </Grid>
                     ))}
                 </Grid>
             </Container>
-            <ProjectModal /> {/* Renderize o componente do modal aqui */}
+            <ProjectModal />
         </AppLayout>
     );
 }
