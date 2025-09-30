@@ -2,7 +2,8 @@
 
 Portfolio moderno e responsivo inspirado no VS Code, construído com React, Vite, TypeScript e Tailwind CSS. Suporte completo a PWA e múltiplos idiomas.
 
-![Portfolio Screenshot](public/og-image.png)
+![Portfolio Screenshot](https://github.com/user-attachments/assets/24487151-bff4-4613-9021-9c0d1d7dfbbc)
+
 
 ## ✨ Características
 
