@@ -3,14 +3,43 @@ import { ArrowRight, Download, ExternalLink, Github, Linkedin } from 'lucide-rea
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '../LanguageProvider';
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiNestjs,
+  SiGraphql,
+  SiAmazonwebservices,
+  SiDocker,
+  SiGit,
+  SiPostgresql,
+  SiMongodb,
+  SiPrisma
+} from 'react-icons/si';
+import { FaBrain, FaRobot } from 'react-icons/fa';
+import { VscGithubAction } from 'react-icons/vsc';
 
 const skills = [
-  { name: 'React', icon: '⚛️', color: 'text-blue-500' },
-  { name: 'Next.js', icon: '🔥', color: 'text-white' },
-  { name: 'TypeScript', icon: '📘', color: 'text-blue-600' },
-  { name: 'Node.js', icon: '💚', color: 'text-green-500' },
-  { name: 'Tailwind', icon: '🎨', color: 'text-cyan-500' },
-  { name: 'PostgreSQL', icon: '🐘', color: 'text-blue-700' },
+  { name: 'React.js', icon: SiReact, color: 'text-[#61DAFB]' },
+  { name: 'Next.js', icon: SiNextdotjs, color: 'text-white' },
+  { name: 'TypeScript', icon: SiTypescript, color: 'text-[#3178C6]' },
+  { name: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-[#06B6D4]' },
+  { name: 'Node.js', icon: SiNodedotjs, color: 'text-[#339933]' },
+  { name: 'Express', icon: SiExpress, color: 'text-white' },
+  { name: 'NestJS', icon: SiNestjs, color: 'text-[#E0234E]' },
+  { name: 'REST/GraphQL', icon: SiGraphql, color: 'text-[#E10098]' },
+  { name: 'AWS', icon: SiAmazonwebservices, color: 'text-[#FF9900]' },
+  { name: 'Docker', icon: SiDocker, color: 'text-[#2496ED]' },
+  { name: 'Git', icon: SiGit, color: 'text-[#F05032]' },
+  { name: 'CI/CD', icon: VscGithubAction, color: 'text-[#2088FF]' },
+  { name: 'PostgreSQL', icon: SiPostgresql, color: 'text-[#4169E1]' },
+  { name: 'MongoDB', icon: SiMongodb, color: 'text-[#47A248]' },
+  { name: 'Prisma', icon: SiPrisma, color: 'text-[#2D3748]' },
+  { name: 'Machine Learning', icon: FaBrain, color: 'text-[#FF6F00]' },
+  { name: 'APIs de IA', icon: FaRobot, color: 'text-[#9C27B0]' },
 ];
 
 export function HomeSection() {
@@ -56,60 +85,78 @@ export function HomeSection() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button 
-            size="lg" 
-            className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 group"
+          <Button
+            size="lg"
+            className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
           >
             {t('home.cta.projects')}
-            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
-          <Button 
-            variant="outline" 
+          <Button
             size="lg"
+            variant="outline"
+            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={handleWhatsApp}
-            className="border-accent text-accent hover:bg-accent hover:text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300"
           >
             {t('home.cta.contact')}
-            <ExternalLink className="ml-2 w-4 h-4" />
+            <ExternalLink className="ml-2 w-5 h-5" />
           </Button>
         </div>
 
-        {/* Skills Grid */}
-        <div className="space-y-6">
+        {/* Social Links */}
+        <div className="flex gap-4 justify-center items-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hover:text-primary hover:bg-primary/10 transition-colors"
+            onClick={() => window.open('https://github.com/darioreisjr', '_blank')}
+          >
+            <Github className="w-5 h-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hover:text-primary hover:bg-primary/10 transition-colors"
+            onClick={() => window.open('https://linkedin.com/in/darioreisjr', '_blank')}
+          >
+            <Linkedin className="w-5 h-5" />
+          </Button>
+        </div>
+
+        {/* Skills Section */}
+        <div className="space-y-6 pt-8">
           <h3 className="text-xl font-semibold text-foreground">{t('home.skills.title')}</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {skills.map((skill, index) => (
-              <Card 
-                key={skill.name} 
-                className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+              <Card
+                key={index}
+                className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer group animate-fade-in"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
-                <CardContent className="p-4 text-center space-y-2">
-                  <div className="text-2xl">{skill.icon}</div>
-                  <p className="text-sm font-medium text-foreground">{skill.name}</p>
+                <CardContent className="p-4 flex flex-col items-center justify-center gap-2">
+                  <skill.icon className={`w-8 h-8 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+                  <span className="text-xs text-center text-muted-foreground group-hover:text-foreground transition-colors">
+                    {skill.name}
+                  </span>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
 
-        {/* Quick Links */}
-        <div className="flex justify-center gap-4 pt-8">
-          <Button 
-            variant="ghost" 
-            size="sm"
-            onClick={() => window.open('https://github.com/darioreisjr', '_blank')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+        {/* Download CV Button */}
+        <div className="pt-4">
+          <Button
+            variant="ghost"
+            className="text-muted-foreground hover:text-foreground"
+            onClick={() => {
+              // Aqui você pode adicionar o link para o seu CV
+              console.log('Download CV');
+            }}
           >
-            <Github className="w-5 h-5" />
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="sm"
-            onClick={() => window.open('https://linkedin.com/in/darioreisjr', '_blank')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Linkedin className="w-5 h-5" />
+            <Download className="mr-2 w-4 h-4" />
+            {t('about.download.cv')}
           </Button>
         </div>
       </div>

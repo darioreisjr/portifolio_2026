@@ -21,7 +21,7 @@ const translations = {
     
     // Home
     'home.title': 'Desenvolvedor de Software',
-    'home.subtitle': 'Especializado em React, Next.js e Node.js',
+    'home.subtitle': 'Especializado em Criação de soluções com React, Node.js, AWS e IA',
     'home.description': 'Criando experiências digitais modernas com foco em performance, acessibilidade e experiência do usuário.',
     'home.cta.projects': 'Ver Projetos',
     'home.cta.contact': 'Falar no WhatsApp',
@@ -98,7 +98,7 @@ const translations = {
     
     // Home
     'home.title': 'Software Developer',
-    'home.subtitle': 'Specialized in React, Next.js and Node.js',
+    'home.subtitle': 'Specialized in Creating solutions with React, Node.js, AWS and AI',
     'home.description': 'Creating modern digital experiences focused on performance, accessibility and user experience.',
     'home.cta.projects': 'View Projects',
     'home.cta.contact': 'WhatsApp Chat',
@@ -175,7 +175,7 @@ const translations = {
     
     // Home
     'home.title': 'Desenvolvedor de Software',
-    'home.subtitle': 'Especializado em React, Next.js e Node.js',
+    'home.subtitle': 'Especializado em Criação de soluções com React, Node.js, AWS e IA',
     'home.description': 'A criar experiências digitais modernas com foco na performance, acessibilidade e experiência do utilizador.',
     'home.cta.projects': 'Ver Projectos',
     'home.cta.contact': 'Falar no WhatsApp',
