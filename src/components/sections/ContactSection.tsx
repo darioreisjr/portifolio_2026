@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, MessageSquare, Linkedin, Github, Mail, MapPin, Phone } from 'lucide-react';
+import { Send, MapPin, Phone } from 'lucide-react';
+import { BsWhatsapp, BsLinkedin, BsGithub, BsEnvelope } from "react-icons/bs";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -31,15 +32,15 @@ export function ContactSection() {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       // In a real app, you would send the data to your API
       console.log('Form data:', formData);
-      
+
       toast({
         title: t('contact.form.success'),
         description: 'Retornarei em breve!',
       });
-      
+
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       toast({
@@ -53,23 +54,23 @@ export function ContactSection() {
 
   const quickContacts = [
     {
-      icon: MessageSquare,
+      icon: BsWhatsapp,
       label: t('contact.whatsapp'),
-      value: '+55 (11) 99999-9999',
-      action: () => window.open('https://wa.me/5511999999999?text=Olá! Vi seu portfólio e gostaria de conversar.', '_blank'),
+      value: '+55 (11) 96188-9886',
+      action: () => window.open('https://wa.me/5511961889886?text=Olá! Vi seu portfólio e gostaria de conversar.', '_blank'),
       color: 'text-green-500',
       bgColor: 'bg-green-500/10'
     },
     {
-      icon: Mail,
+      icon: BsEnvelope,
       label: 'E-mail',
-      value: 'email@exemplo.com',
-      action: () => window.open('mailto:email@exemplo.com', '_blank'),
+      value: 'dev.darioreis@gmail.com',
+      action: () => window.open('mailto:dev.darioreis@gmail.com', '_blank'),
       color: 'text-blue-500',
       bgColor: 'bg-blue-500/10'
     },
     {
-      icon: Linkedin,
+      icon: BsLinkedin,
       label: t('contact.linkedin'),
       value: 'linkedin.com/in/darioreisjr',
       action: () => window.open('https://linkedin.com/in/darioreisjr', '_blank'),
@@ -77,7 +78,7 @@ export function ContactSection() {
       bgColor: 'bg-blue-600/10'
     },
     {
-      icon: Github,
+      icon: BsGithub,
       label: t('contact.github'),
       value: 'github.com/darioreisjr',
       action: () => window.open('https://github.com/darioreisjr', '_blank'),
@@ -132,7 +133,7 @@ export function ContactSection() {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="subject" className="text-foreground">{t('contact.form.subject')}</Label>
                   <Input
@@ -145,7 +146,7 @@ export function ContactSection() {
                     placeholder="Assunto da mensagem"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-foreground">{t('contact.form.message')}</Label>
                   <Textarea
@@ -159,9 +160,9 @@ export function ContactSection() {
                     placeholder="Descreva seu projeto ou dúvida..."
                   />
                 </div>
-                
-                <Button 
-                  type="submit" 
+
+                <Button
+                  type="submit"
                   disabled={isLoading}
                   className="w-full bg-primary hover:bg-primary-hover text-primary-foreground"
                 >
@@ -215,7 +216,7 @@ export function ContactSection() {
                 <div className="space-y-2">
                   <p className="text-foreground font-medium">São Paulo, Brasil</p>
                   <p className="text-sm text-muted-foreground">
-                    Atendo presencialmente na região de Suzano e São Paulo Capital, 
+                    Atendo presencialmente na região de Suzano e São Paulo Capital,
                     e remotamente em todo o Brasil.
                   </p>
                 </div>
