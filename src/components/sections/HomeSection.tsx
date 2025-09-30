@@ -61,7 +61,7 @@ export function HomeSection() {
   }, [fullText]);
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/5511999999999?text=Olá! Vi seu portfólio e gostaria de conversar sobre um projeto.', '_blank');
+    window.open('https://wa.me/5511961889886?text=Olá! Vi seu portfólio e gostaria de conversar sobre um projeto.', '_blank');
   };
 
   return (
