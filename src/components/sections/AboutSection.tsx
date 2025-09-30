@@ -6,40 +6,40 @@ import { useLanguage } from '../LanguageProvider';
 
 const timeline = [
   {
-    year: '2024',
-    title: 'Senior Frontend Developer',
-    company: 'Tech Solutions Inc.',
-    description: 'Liderando equipe de desenvolvimento frontend, implementando arquiteturas escaláveis com React e Next.js.',
+    year: '2025',
+    title: 'Front-end Developer',
+    company: 'ProBrain | Afinando o Cérebro',
+    description: 'Liderando equipe de desenvolvimento frontend, implementando Atuação no desenvolvimento de plataformas web modernas e escaláveis usando ReactJS, Next.js e TypeScript. Implementação de componentes reutilizáveis, gerenciamento de estado (Redux, Context API), integração com APIs REST e autenticação com AWS Cognito. Foco em performance e experiência do usuário. escaláveis com React e Next.js.',
+    type: 'work'
+  },
+  {
+    year: '2025',
+    title: 'Foundations of Cybersecurity',
+    company: 'Google & Reichman Tech School',
+    description: 'Curso focado em fundamentos de segurança da informação, boas práticas e proteção de aplicações.',
+    type: 'education'
+  },
+  {
+    year: '2023',
+    title: 'Desenvolvedor Web Front-end (Freelancer)',
+    company: 'Workana',
+    description: 'Criação de aplicações completas com React, Next.js, Vite e Node.js. Desenvolvimento de funcionalidades com Hooks, testes unitários com Jest e integração com APIs RESTful. Experiência em UI/UX para aplicações responsivas e escaláveis. ',
     type: 'work'
   },
   {
     year: '2023',
-    title: 'Fullstack Developer',
-    company: 'StartupXYZ',
-    description: 'Desenvolvimento de aplicações completas, desde o backend com Node.js até interfaces modernas com React.',
-    type: 'work'
-  },
-  {
-    year: '2022',
-    title: 'Freelancer',
-    company: 'Projetos Diversos',
-    description: 'Desenvolvimento de sites e sistemas para pequenas e médias empresas, focando em performance e UX.',
+    title: 'Analista de eSocial',
+    company: 'Healthwork Medicina e Segurança no Trabalho',
+    description: 'Responsável pela criação de eventos em XML no eSocial (admissão, demissão, alterações cadastrais, etc.), garantindo conformidade legal e prazos exigidos. Atuava na manutenção e atualização de cadastros de colaboradores, corrigindo inconsistências e assegurando integridade dos dados. Realizava a análise e resolução de erros cadastrais, além da pesquisa e recuperação de matrículas no eSocial utilizando ferramentas avançadas. Domínio da plataforma eSocial, legislação trabalhista e validação de arquivos XML.',
     type: 'work'
   },
   {
     year: '2021',
-    title: 'Bootcamp Full Stack',
-    company: 'Digital Innovation One',
-    description: 'Especialização intensiva em desenvolvimento web moderno, JavaScript, React e Node.js.',
+    title: 'Graduação – Análise e Desenvolvimento de Sistemas',
+    company: 'Estácio',
+    description: 'Formação em desenvolvimento de software com foco em front-end e back-end, estruturas de dados e bancos de dados relacionais. ',
     type: 'education'
   },
-  {
-    year: '2020',
-    title: 'Ciência da Computação',
-    company: 'Universidade Anhembi Morumbi',
-    description: 'Graduação em Ciência da Computação com foco em desenvolvimento de software e estruturas de dados.',
-    type: 'education'
-  }
 ];
 
 export function AboutSection() {
