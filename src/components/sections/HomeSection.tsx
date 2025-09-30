@@ -3,6 +3,7 @@ import { ArrowRight, Download, ExternalLink, Github, Linkedin } from 'lucide-rea
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '../LanguageProvider';
+import { useNavigate } from 'react-router-dom';
 import {
   SiReact,
   SiNextdotjs,
@@ -44,6 +45,7 @@ const skills = [
 
 export function HomeSection() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [typingText, setTypingText] = useState('');
   const fullText = t('home.title');
 
@@ -88,7 +90,7 @@ export function HomeSection() {
           <Button
             size="lg"
             className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => navigate('/projects')}
           >
             {t('home.cta.projects')}
             <ArrowRight className="ml-2 w-5 h-5" />
@@ -128,20 +130,23 @@ export function HomeSection() {
         <div className="space-y-6 pt-8">
           <h3 className="text-xl font-semibold text-foreground">{t('home.skills.title')}</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {skills.map((skill, index) => (
-              <Card
-                key={index}
-                className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer group animate-fade-in"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <CardContent className="p-4 flex flex-col items-center justify-center gap-2">
-                  <skill.icon className={`w-8 h-8 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
-                  <span className="text-xs text-center text-muted-foreground group-hover:text-foreground transition-colors">
-                    {skill.name}
-                  </span>
-                </CardContent>
-              </Card>
-            ))}
+            {skills.map((skill, index) => {
+              const IconComponent = skill.icon;
+              return (
+                <Card 
+                  key={skill.name} 
+                  className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 group"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <CardContent className="p-4 flex flex-col items-center gap-2">
+                    <IconComponent className={`w-8 h-8 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+                    <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">
+                      {skill.name}
+                    </span>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
 
@@ -152,7 +157,10 @@ export function HomeSection() {
             className="text-muted-foreground hover:text-foreground"
             onClick={() => {
               // Aqui você pode adicionar o link para o seu CV
-              console.log('Download CV');
+              const link = document.createElement('a');
+              link.href = '/cv-dario-reis.pdf';
+              link.download = 'CV-Dario-Reis.pdf';
+              link.click();
             }}
           >
             <Download className="mr-2 w-4 h-4" />
