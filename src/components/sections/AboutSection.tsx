@@ -68,18 +68,22 @@ export function AboutSection() {
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="md:col-span-1 bg-gradient-to-br from-card to-vscode-sidebar border-border">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-4xl font-bold text-white">
-                DR
+              <div className="w-32 h-32 mx-auto flex items-center justify-center to-accent">
+                <img
+                  src="https://avatars.githubusercontent.com/u/85812823?v=4"
+                  alt="avatar"
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               <div className="space-y-2">
                 <h3 className="text-xl font-semibold text-foreground">Dario Reis</h3>
                 <p className="text-muted-foreground">{t('home.title')}</p>
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                   <MapPin className="w-4 h-4" />
-                  <span>Suzano/São Paulo, SP</span>
+                  <span>São Paulo, SP</span>
                 </div>
               </div>
-              <Button 
+              <Button
                 onClick={downloadCV}
                 className="w-full bg-primary hover:bg-primary-hover text-primary-foreground"
               >
@@ -102,9 +106,8 @@ export function AboutSection() {
                 {timeline.map((item, index) => (
                   <div key={index} className="flex gap-4">
                     <div className="flex flex-col items-center">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold text-white ${
-                        item.type === 'work' ? 'bg-primary' : 'bg-accent'
-                      }`}>
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold text-white ${item.type === 'work' ? 'bg-primary' : 'bg-accent'
+                        }`}>
                         {item.year}
                       </div>
                       {index < timeline.length - 1 && (
@@ -125,13 +128,13 @@ export function AboutSection() {
             <div className="grid grid-cols-3 gap-4">
               <Card className="bg-card border-border text-center">
                 <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-primary">50+</div>
+                  <div className="text-2xl font-bold text-primary">20+</div>
                   <div className="text-sm text-muted-foreground">Projetos</div>
                 </CardContent>
               </Card>
               <Card className="bg-card border-border text-center">
                 <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-accent">3+</div>
+                  <div className="text-2xl font-bold text-accent">5+</div>
                   <div className="text-sm text-muted-foreground">Anos Exp.</div>
                 </CardContent>
               </Card>
