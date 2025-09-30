@@ -216,8 +216,7 @@ export function ContactSection() {
                 <div className="space-y-2">
                   <p className="text-foreground font-medium">São Paulo, Brasil</p>
                   <p className="text-sm text-muted-foreground">
-                    Atendo presencialmente na região de Suzano e São Paulo Capital,
-                    e remotamente em todo o Brasil.
+                    Disponível para colaboração em projetos no Brasil e no exterior.
                   </p>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
