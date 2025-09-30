@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '../LanguageProvider';
+import techcompass from '../../../public/techcompass.png';
 
 interface Project {
   id: number;
@@ -20,13 +21,13 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'E-commerce Dashboard',
-    description: 'Dashboard administrativo completo para e-commerce com React, Next.js e Tailwind CSS. Inclui gestão de produtos, pedidos, clientes e relatórios em tempo real.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Chart.js'],
+    title: 'Tech Compass',
+    description: 'Uma aplicação React moderna para descobrir carreiras em tecnologia através de um questionário interativo. Projeto atualizado com as tecnologias mais recentes do ecossistema React.',
+    image: techcompass,
+    technologies: ['React', 'Vite', 'ESLint', 'JavaScript', 'CSS Puro', 'Gemini AI API', 'GitHub API'],
     category: 'web',
-    demoUrl: '#',
-    githubUrl: '#',
+    demoUrl: 'https://techcompass.cafebugado.com.br/',
+    githubUrl: 'https://github.com/darioreisjr/TechCompass',
     featured: true
   },
   {
@@ -92,8 +93,8 @@ export function ProjectsSection() {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
+  const filteredProjects = activeFilter === 'all'
+    ? projects
     : projects.filter(project => project.category === activeFilter);
 
   return (
@@ -112,11 +113,10 @@ export function ProjectsSection() {
               variant={activeFilter === category.id ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveFilter(category.id)}
-              className={`transition-all duration-300 ${
-                activeFilter === category.id 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'border-border hover:border-primary/50'
-              }`}
+              className={`transition-all duration-300 ${activeFilter === category.id
+                ? 'bg-primary text-primary-foreground'
+                : 'border-border hover:border-primary/50'
+                }`}
             >
               <Filter className="w-4 h-4 mr-2" />
               {t(category.key)}
@@ -127,11 +127,10 @@ export function ProjectsSection() {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, index) => (
-            <Card 
+            <Card
               key={project.id}
-              className={`bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 group animate-fade-in ${
-                project.featured ? 'ring-2 ring-primary/20' : ''
-              }`}
+              className={`bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 group animate-fade-in ${project.featured ? 'ring-2 ring-primary/20' : ''
+                }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardHeader className="p-0">
@@ -161,7 +160,7 @@ export function ProjectsSection() {
                   </div>
                 </div>
               </CardHeader>
-              
+
               <CardContent className="p-6 space-y-4">
                 <div className="space-y-2">
                   <CardTitle className="text-foreground">{project.title}</CardTitle>
@@ -180,8 +179,8 @@ export function ProjectsSection() {
 
                 <div className="flex gap-2 pt-2">
                   {project.demoUrl && (
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       variant="outline"
                       onClick={() => window.open(project.demoUrl, '_blank')}
                       className="flex-1"
@@ -191,8 +190,8 @@ export function ProjectsSection() {
                     </Button>
                   )}
                   {project.githubUrl && (
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       variant="outline"
                       onClick={() => window.open(project.githubUrl, '_blank')}
                       className="flex-1"
