@@ -19,6 +19,13 @@ const translations = {
     'nav.projects': 'Projetos',
     'nav.contact': 'Contato',
     
+    // 404 Page
+    '404.title': 'Página Não Encontrada',
+    '404.description': 'Ops! A página que você está procurando não existe ou foi movida para outro lugar.',
+    '404.button.home': 'Voltar para Home',
+    '404.button.back': 'Voltar',
+    '404.links.title': 'Você também pode acessar:',
+    
     // Home
     'home.title': 'Desenvolvedor de Software',
     'home.subtitle': 'Especializado em Criação de soluções com React, Node.js, AWS e IA',
@@ -229,6 +236,13 @@ const translations = {
     'nav.projects': 'Projects',
     'nav.contact': 'Contact',
     
+    // 404 Page
+    '404.title': 'Page Not Found',
+    '404.description': 'Oops! The page you are looking for does not exist or has been moved elsewhere.',
+    '404.button.home': 'Back to Home',
+    '404.button.back': 'Go Back',
+    '404.links.title': 'You can also access:',
+    
     // Home
     'home.title': 'Software Developer',
     'home.subtitle': 'Specialized in creating solutions with React, Node.js, AWS and AI',
@@ -403,7 +417,7 @@ const translations = {
     
     // Contact
     'contact.title': 'Contact',
-    'contact.subtitle': 'Let\'s talk about your project',
+    'contact.subtitle': "Let's talk about your project",
     'contact.form.name': 'Name',
     'contact.form.email': 'Email',
     'contact.form.subject': 'Subject',
@@ -418,7 +432,7 @@ const translations = {
     
     // FAQ
     'faq.title': 'Frequently Asked Questions',
-    'faq.1.question': 'What\'s the average development timeline?',
+    'faq.1.question': "What's the average development timeline?",
     'faq.1.answer': 'Depending on complexity, web projects take 2-6 weeks, while mobile apps can take 4-12 weeks.',
     'faq.2.question': 'Do you offer post-delivery support?',
     'faq.2.answer': 'Yes! I offer 30 days of free support and monthly maintenance packages starting at $150.',
@@ -438,6 +452,13 @@ const translations = {
     'nav.services': 'Serviços',
     'nav.projects': 'Projectos',
     'nav.contact': 'Contacto',
+    
+    // 404 Page
+    '404.title': 'Página Não Encontrada',
+    '404.description': 'Ops! A página que está a procurar não existe ou foi movida para outro lugar.',
+    '404.button.home': 'Voltar ao Início',
+    '404.button.back': 'Voltar',
+    '404.links.title': 'Também pode aceder a:',
     
     // Home
     'home.title': 'Desenvolvedor de Software',
