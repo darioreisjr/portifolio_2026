@@ -1,17 +1,21 @@
 import { Home, ArrowLeft, User, Briefcase, FolderOpen, MessageSquare } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/20 px-4">
       <div className="max-w-2xl w-full text-center space-y-8">
         {/* Número 404 Animado */}
         <div className="relative">
+          {/* Número de fundo estático */}
           <div className="text-[180px] md:text-[240px] font-bold text-primary/10 dark:text-primary/5 select-none leading-none">
             404
           </div>
+          {/* Número animado sobreposto com gradiente e bounce */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="animate-bounce-slow">
               <span className="text-8xl md:text-9xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient">
@@ -33,16 +37,18 @@ const NotFound = () => {
 
         {/* Botões de Ação */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-          <a
-            href="/"
+          {/* Botão para voltar à home - agora usando navigate ao invés de href */}
+          <button
+            onClick={() => navigate('/')}
             className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >
             <Home className="w-5 h-5 group-hover:scale-110 transition-transform" />
             {t('404.button.home')}
-          </a>
-          
+          </button>
+
+          {/* Botão para voltar à página anterior - usando navigate(-1) */}
           <button
-            onClick={() => window.history.back()}
+            onClick={() => navigate(-1)}
             className="group inline-flex items-center gap-2 px-6 py-3 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-all duration-300 hover:scale-105"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -50,7 +56,7 @@ const NotFound = () => {
           </button>
         </div>
 
-        {/* Elementos Decorativos */}
+        {/* Elementos Decorativos - três pontinhos com animação de pulso alternada */}
         <div className="pt-8 flex justify-center gap-2">
           <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: '0s' }}></div>
           <div className="w-2 h-2 rounded-full bg-accent animate-pulse" style={{ animationDelay: '0.2s' }}></div>
@@ -63,34 +69,35 @@ const NotFound = () => {
             {t('404.links.title')}
           </p>
           <div className="flex flex-wrap justify-center gap-2">
-            <a
-              href="/about"
+            {/* Todos os links de navegação agora usam botões com navigate */}
+            <button
+              onClick={() => navigate('/about')}
               className="inline-flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-md text-sm font-medium transition-all duration-300 hover:scale-105"
             >
               <User className="w-4 h-4" />
               {t('nav.about')}
-            </a>
-            <a
-              href="/services"
+            </button>
+            <button
+              onClick={() => navigate('/services')}
               className="inline-flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-md text-sm font-medium transition-all duration-300 hover:scale-105"
             >
               <Briefcase className="w-4 h-4" />
               {t('nav.services')}
-            </a>
-            <a
-              href="/projects"
+            </button>
+            <button
+              onClick={() => navigate('/projects')}
               className="inline-flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-md text-sm font-medium transition-all duration-300 hover:scale-105"
             >
               <FolderOpen className="w-4 h-4" />
               {t('nav.projects')}
-            </a>
-            <a
-              href="/contact"
+            </button>
+            <button
+              onClick={() => navigate('/contact')}
               className="inline-flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-md text-sm font-medium transition-all duration-300 hover:scale-105"
             >
               <MessageSquare className="w-4 h-4" />
               {t('nav.contact')}
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -123,6 +130,7 @@ const NotFound = () => {
           animation: gradient 3s ease-in-out infinite;
         }
       `}</style>
+      
     </div>
   );
 };
