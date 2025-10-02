@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '../LanguageProvider';
 import techcompass from '../../../public/techcompass.png';
+import portalnoticias from '../../../public/portaldenoticias.png';
 
 interface Project {
   id: number;
@@ -79,6 +80,16 @@ const projects: Project[] = [
     technologies: ['Node.js', 'Socket.io', 'MongoDB', 'JWT'],
     category: 'backend',
     githubUrl: '#'
+  },
+  {
+    id: 7,
+    title: 'Portal de Notícias de Tecnologia',
+    description: 'Esta homepage foi criada para oferecer uma experiência intuitiva e moderna para usuários de desktop, destacando as últimas novidades em tecnologia, inteligência artificial, robótica e inovações digitais.',
+    image: portalnoticias,
+    technologies: ['HTML5', 'CSS3', 'Git', 'Vercel'],
+    category: 'web',
+    demoUrl: 'https://drportaldenoticias.vercel.app/',
+    githubUrl: 'https://github.com/darioreisjr/projeto-portal-de-noticias'
   }
 ];
 
