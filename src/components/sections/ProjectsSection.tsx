@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Filter } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -100,6 +101,9 @@ const categories = [
   { id: 'backend', key: 'projects.filter.backend' },
 ];
 
+// Criando um Card com motion
+const MotionCard = motion(Card);
+
 export function ProjectsSection() {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
@@ -137,12 +141,17 @@ export function ProjectsSection() {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, index) => (
-            <Card
+          {filteredProjects.map((project) => (
+            <MotionCard
               key={project.id}
-              className={`bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 group animate-fade-in ${project.featured ? 'ring-2 ring-primary/20' : ''
-                }`}
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`bg-card border-border group ${project.featured ? 'ring-2 ring-primary/20' : ''}`}
+              whileHover={{ 
+                scale: 1.03,
+                borderColor: 'hsl(var(--primary) / 0.5)',
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
             >
               <CardHeader className="p-0">
                 <div className="relative overflow-hidden rounded-t-lg">
@@ -192,9 +201,9 @@ export function ProjectsSection() {
                   {project.demoUrl && (
                     <Button
                       size="sm"
-                      variant="outline"
-                      onClick={() => window.open(project.demoUrl, '_blank')}
+                      variant="default"
                       className="flex-1"
+                      onClick={() => window.open(project.demoUrl, '_blank')}
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
                       {t('projects.demo')}
@@ -204,8 +213,8 @@ export function ProjectsSection() {
                     <Button
                       size="sm"
                       variant="outline"
-                      onClick={() => window.open(project.githubUrl, '_blank')}
                       className="flex-1"
+                      onClick={() => window.open(project.githubUrl, '_blank')}
                     >
                       <Github className="w-4 h-4 mr-2" />
                       {t('projects.code')}
@@ -213,18 +222,9 @@ export function ProjectsSection() {
                   )}
                 </div>
               </CardContent>
-            </Card>
+            </MotionCard>
           ))}
         </div>
-
-        {/* Load More Button */}
-        {filteredProjects.length > 6 && (
-          <div className="text-center">
-            <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Carregar Mais Projetos
-            </Button>
-          </div>
-        )}
       </div>
     </section>
   );
