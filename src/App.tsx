@@ -14,6 +14,7 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { FAQBot } from "./components/FAQBot";
 
 const queryClient = new QueryClient();
 
@@ -49,7 +50,7 @@ const LoadingScreen = () => {
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ 
+          transition={{
             duration: 0.6,
             ease: "easeOut"
           }}
@@ -58,7 +59,7 @@ const LoadingScreen = () => {
             src="/favicon.ico"
             alt="Portfolio Logo"
             className="w-32 h-32 rounded-2xl shadow-2xl"
-            animate={{ 
+            animate={{
               scale: [1, 1.05, 1],
             }}
             transition={{
@@ -188,6 +189,8 @@ const App = () => {
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </BrowserRouter>
+                  {/* FAQ Bot - Adicionado aqui para estar disponível em todas as páginas */}
+                  <FAQBot />
                 </motion.div>
               )}
             </AnimatePresence>

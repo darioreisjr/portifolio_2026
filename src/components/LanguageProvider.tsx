@@ -227,6 +227,32 @@ const translations = {
     'faq.5.answer': 'Sim, desde landing pages simples até sistemas complexos. Adapto a metodologia conforme o projeto.',
     'faq.6.question': 'Quais são as formas de pagamento?',
     'faq.6.answer': 'Transferência bancária ou cartão de crédito. Parcelamento em até 3x sem juros para projetos acima de R$ 5.000.',
+    // FAQ Bot
+  'faq.bot.name': 'Assistente Virtual',
+  'faq.bot.status': 'Online agora',
+  'faq.welcome': 'Olá! 👋 Sou o assistente virtual do Dario. Selecione uma pergunta abaixo para saber mais sobre a trajetória profissional dele.',
+  'faq.select.question': 'Selecione uma pergunta:',
+  
+  // Perguntas
+  'faq.question1': 'Qual é a experiência profissional atual?',
+  'faq.question2': 'Quais são as principais tecnologias que domina?',
+  'faq.question3': 'Qual é a formação acadêmica?',
+  'faq.question4': 'Que tipo de projetos já desenvolveu?',
+  'faq.question5': 'Quais serviços oferece?',
+  'faq.question6': 'Como posso entrar em contato?',
+  
+  // Respostas
+  'faq.answer1': 'Atualmente trabalho como Front-end Developer na ProBrain | Afinando o Cérebro, onde lidero o desenvolvimento de plataformas web modernas e escaláveis usando ReactJS, Next.js e TypeScript.\n\nMinhas principais atividades incluem:\n• Implementação de componentes reutilizáveis\n• Gerenciamento de estado (Redux, Context API)\n• Integração com APIs REST\n• Autenticação com AWS Cognito\n• Foco em performance e experiência do usuário',
+  
+  'faq.answer2': 'Sou especializado em:\n\n🎨 Frontend:\n• React.js e Next.js\n• TypeScript e JavaScript\n• Tailwind CSS\n• HTML5 e CSS3\n\n⚙️ Backend:\n• Node.js e Express\n• APIs REST e GraphQL\n• PostgreSQL e MongoDB\n\n☁️ Outros:\n• AWS (Cognito, S3, Lambda)\n• Git e GitHub\n• Docker\n• Jest para testes',
+  
+  'faq.answer3': 'Tenho graduação em Análise e Desenvolvimento de Sistemas pela Estácio (2021), com formação focada em:\n\n• Desenvolvimento de software (front-end e back-end)\n• Estruturas de dados\n• Bancos de dados relacionais\n• Engenharia de software\n\nAlém disso, concluí o curso "Foundations of Cybersecurity" pela Google & Reichman Tech School (2025), com foco em segurança da informação e boas práticas.',
+  
+  'faq.answer4': 'Desenvolvi diversos projetos, incluindo:\n\n🚀 Tech Compass:\nAplicação React para descobrir carreiras em tecnologia com IA, usando Vite, Gemini AI API e GitHub API.\n\n💼 Freelancer Workana (2023):\n• Aplicações completas com React e Next.js\n• Funcionalidades com Hooks\n• Testes unitários com Jest\n• Integração com APIs RESTful\n• UI/UX responsiva e escalável\n\nTodos os projetos focam em performance, acessibilidade e experiência do usuário.',
+  
+  'faq.answer5': 'Ofereço os seguintes serviços:\n\n🌐 Desenvolvimento Web:\n• Landing Pages responsivas\n• E-commerce com Stripe\n• Dashboards administrativos\n• Progressive Web Apps (PWA)\n• Otimização SEO\n\n📱 Aplicações Mobile:\n• Apps híbridos com React Native\n• PWAs instaláveis\n\n⚙️ API e Backend:\n• APIs REST e GraphQL\n• Autenticação e autorização\n• Deploy em cloud (Vercel/AWS)\n\n💡 Consultoria Tech:\n• Code review e refatoração\n• Arquitetura de aplicações\n• Otimização de performance\n• Mentoria técnica',
+  
+  'faq.answer6': 'Você pode entrar em contato comigo através de:\n\n📱 WhatsApp: Clique no botão "Falar no WhatsApp" no site\n💼 LinkedIn: linkedin.com/in/darioreisjr\n🐙 GitHub: github.com/darioreisjr\n📧 Email: Disponível no formulário de contato do site\n\nEstou sempre aberto a novos projetos e oportunidades de colaboração!'
   },
   'en': {
     // Navigation
@@ -444,6 +470,32 @@ const translations = {
     'faq.5.answer': 'Yes, from simple landing pages to complex systems. I adapt the methodology according to the project.',
     'faq.6.question': 'What are the payment methods?',
     'faq.6.answer': 'Bank transfer or credit card. Installments up to 3x interest-free for projects over $2,500.',
+    // FAQ Bot
+  'faq.bot.name': 'Virtual Assistant',
+  'faq.bot.status': 'Online now',
+  'faq.welcome': 'Hello! 👋 I\'m Dario\'s virtual assistant. Select a question below to learn more about his professional background.',
+  'faq.select.question': 'Select a question:',
+  
+  // Questions
+  'faq.question1': 'What is the current professional experience?',
+  'faq.question2': 'What are the main technologies mastered?',
+  'faq.question3': 'What is the academic background?',
+  'faq.question4': 'What type of projects have been developed?',
+  'faq.question5': 'What services are offered?',
+  'faq.question6': 'How can I get in touch?',
+  
+  // Answers
+  'faq.answer1': 'I currently work as a Front-end Developer at ProBrain | Afinando o Cérebro, where I lead the development of modern and scalable web platforms using ReactJS, Next.js, and TypeScript.\n\nMy main activities include:\n• Implementation of reusable components\n• State management (Redux, Context API)\n• REST API integration\n• Authentication with AWS Cognito\n• Focus on performance and user experience',
+  
+  'faq.answer2': 'I specialize in:\n\n🎨 Frontend:\n• React.js and Next.js\n• TypeScript and JavaScript\n• Tailwind CSS\n• HTML5 and CSS3\n\n⚙️ Backend:\n• Node.js and Express\n• REST and GraphQL APIs\n• PostgreSQL and MongoDB\n\n☁️ Others:\n• AWS (Cognito, S3, Lambda)\n• Git and GitHub\n• Docker\n• Jest for testing',
+  
+  'faq.answer3': 'I have a degree in Systems Analysis and Development from Estácio (2021), with training focused on:\n\n• Software development (front-end and back-end)\n• Data structures\n• Relational databases\n• Software engineering\n\nAdditionally, I completed the "Foundations of Cybersecurity" course by Google & Reichman Tech School (2025), focusing on information security and best practices.',
+  
+  'faq.answer4': 'I have developed several projects, including:\n\n🚀 Tech Compass:\nReact application to discover tech careers with AI, using Vite, Gemini AI API, and GitHub API.\n\n💼 Workana Freelancer (2023):\n• Complete applications with React and Next.js\n• Features with Hooks\n• Unit testing with Jest\n• RESTful API integration\n• Responsive and scalable UI/UX\n\nAll projects focus on performance, accessibility, and user experience.',
+  
+  'faq.answer5': 'I offer the following services:\n\n🌐 Web Development:\n• Responsive Landing Pages\n• E-commerce with Stripe\n• Administrative Dashboards\n• Progressive Web Apps (PWA)\n• SEO Optimization\n\n📱 Mobile Applications:\n• Hybrid apps with React Native\n• Installable PWAs\n\n⚙️ API and Backend:\n• REST and GraphQL APIs\n• Authentication and authorization\n• Cloud deployment (Vercel/AWS)\n\n💡 Tech Consulting:\n• Code review and refactoring\n• Application architecture\n• Performance optimization\n• Technical mentoring',
+  
+  'faq.answer6': 'You can contact me through:\n\n📱 WhatsApp: Click the "Talk on WhatsApp" button on the website\n💼 LinkedIn: linkedin.com/in/darioreisjr\n🐙 GitHub: github.com/darioreisjr\n📧 Email: Available in the website contact form\n\nI\'m always open to new projects and collaboration opportunities!'
   },
   'pt-PT': {
     // Navigation
@@ -661,6 +713,32 @@ const translations = {
     'faq.5.answer': 'Sim, desde landing pages simples até sistemas complexos. Adapto a metodologia conforme o projecto.',
     'faq.6.question': 'Quais são as formas de pagamento?',
     'faq.6.answer': 'Transferência bancária ou cartão. Parcelamento em até 3x sem juros para projectos acima de €2.500.',
+    // FAQ Bot
+  'faq.bot.name': 'Assistente Virtual',
+  'faq.bot.status': 'Online agora',
+  'faq.welcome': 'Olá! 👋 Sou o assistente virtual do Dario. Selecione uma pergunta abaixo para saber mais sobre o percurso profissional dele.',
+  'faq.select.question': 'Selecione uma pergunta:',
+  
+  // Perguntas
+  'faq.question1': 'Qual é a experiência profissional actual?',
+  'faq.question2': 'Quais são as principais tecnologias que domina?',
+  'faq.question3': 'Qual é a formação académica?',
+  'faq.question4': 'Que tipo de projectos já desenvolveu?',
+  'faq.question5': 'Que serviços oferece?',
+  'faq.question6': 'Como posso entrar em contacto?',
+  
+  // Respostas
+  'faq.answer1': 'Actualmente trabalho como Front-end Developer na ProBrain | Afinando o Cérebro, onde lidero o desenvolvimento de plataformas web modernas e escaláveis usando ReactJS, Next.js e TypeScript.\n\nAs minhas principais actividades incluem:\n• Implementação de componentes reutilizáveis\n• Gestão de estado (Redux, Context API)\n• Integração com APIs REST\n• Autenticação com AWS Cognito\n• Foco em performance e experiência do utilizador',
+  
+  'faq.answer2': 'Sou especializado em:\n\n🎨 Frontend:\n• React.js e Next.js\n• TypeScript e JavaScript\n• Tailwind CSS\n• HTML5 e CSS3\n\n⚙️ Backend:\n• Node.js e Express\n• APIs REST e GraphQL\n• PostgreSQL e MongoDB\n\n☁️ Outros:\n• AWS (Cognito, S3, Lambda)\n• Git e GitHub\n• Docker\n• Jest para testes',
+  
+  'faq.answer3': 'Tenho licenciatura em Análise e Desenvolvimento de Sistemas pela Estácio (2021), com formação focada em:\n\n• Desenvolvimento de software (front-end e back-end)\n• Estruturas de dados\n• Bases de dados relacionais\n• Engenharia de software\n\nAlém disso, concluí o curso "Foundations of Cybersecurity" pela Google & Reichman Tech School (2025), com foco em segurança da informação e boas práticas.',
+  
+  'faq.answer4': 'Desenvolvi diversos projectos, incluindo:\n\n🚀 Tech Compass:\nAplicação React para descobrir carreiras em tecnologia com IA, usando Vite, Gemini AI API e GitHub API.\n\n💼 Freelancer Workana (2023):\n• Aplicações completas com React e Next.js\n• Funcionalidades com Hooks\n• Testes unitários com Jest\n• Integração com APIs RESTful\n• UI/UX responsiva e escalável\n\nTodos os projectos focam em performance, acessibilidade e experiência do utilizador.',
+  
+  'faq.answer5': 'Ofereço os seguintes serviços:\n\n🌐 Desenvolvimento Web:\n• Landing Pages responsivas\n• E-commerce com Stripe\n• Dashboards administrativos\n• Progressive Web Apps (PWA)\n• Optimização SEO\n\n📱 Aplicações Mobile:\n• Apps híbridas com React Native\n• PWAs instaláveis\n\n⚙️ API e Backend:\n• APIs REST e GraphQL\n• Autenticação e autorização\n• Deploy em cloud (Vercel/AWS)\n\n💡 Consultoria Tech:\n• Code review e refactoração\n• Arquitectura de aplicações\n• Optimização de performance\n• Mentoria técnica',
+  
+  'faq.answer6': 'Pode entrar em contacto comigo através de:\n\n📱 WhatsApp: Clique no botão "Falar no WhatsApp" no site\n💼 LinkedIn: linkedin.com/in/darioreisjr\n🐙 GitHub: github.com/darioreisjr\n📧 Email: Disponível no formulário de contacto do site\n\nEstou sempre aberto a novos projectos e oportunidades de colaboração!'
   },
 };
 
