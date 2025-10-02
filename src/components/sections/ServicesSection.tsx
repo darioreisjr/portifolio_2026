@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Globe, Smartphone, Server, Users, FileText, Monitor, Layout, Plug, Briefcase, AlertCircle, CheckCircle, Sparkles, Code, Database, Lock, Edit } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useLanguage } from '../LanguageProvider';
+import { motion, useInView } from 'framer-motion';
 
 interface Service {
   icon: any;
@@ -240,6 +241,76 @@ const servicesData: Service[] = [
   }
 ];
 
+// Componente individual do card com animação
+function ServiceCard({ service, index }: { service: Service; index: number }) {
+  const { t } = useLanguage();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { 
+    once: false, // Permite que a animação aconteça toda vez que o card entra na viewport
+    margin: "-100px" // Inicia a animação um pouco antes do card estar completamente visível
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{
+        duration: 0.6,
+        delay: (index % 2) * 0.2, // Delay baseado na posição na linha (esquerda/direita)
+        ease: [0.25, 0.4, 0.25, 1] // Easing suave e natural
+      }}
+    >
+      <Card className="bg-card border-border hover:border-primary/50 transition-colors duration-300 group h-full">
+        <CardHeader className="space-y-4">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            className={`w-12 h-12 rounded-lg ${service.bgColor} flex items-center justify-center`}
+          >
+            <service.icon className={`w-6 h-6 ${service.color}`} />
+          </motion.div>
+          <div className="space-y-2">
+            <CardTitle className="text-foreground">
+              {t(service.titleKey)}
+            </CardTitle>
+            <p className="text-muted-foreground text-sm">
+              {t(service.descriptionKey)}
+            </p>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="features" className="border-none">
+              <AccordionTrigger className="text-sm text-muted-foreground hover:text-foreground py-2">
+                <div className="flex items-center gap-2">
+                  <span>{t('services.view.features')}</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="space-y-2 pt-2">
+                  {service.featuresKeys.map((featureKey, featureIndex) => (
+                    <motion.li
+                      key={featureIndex}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: featureIndex * 0.1 }}
+                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                    >
+                      <span className={`w-1.5 h-1.5 rounded-full ${service.bgColor} mt-1.5`} />
+                      {t(featureKey)}
+                    </motion.li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
+
 export function ServicesSection() {
   const { t } = useLanguage();
 
@@ -257,49 +328,7 @@ export function ServicesSection() {
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {servicesData.map((service, index) => (
-            <Card 
-              key={index} 
-              className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 group animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <CardHeader className="space-y-4">
-                <div className={`w-12 h-12 rounded-lg ${service.bgColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                  <service.icon className={`w-6 h-6 ${service.color}`} />
-                </div>
-                <div className="space-y-2">
-                  <CardTitle className="text-foreground">
-                    {t(service.titleKey)}
-                  </CardTitle>
-                  <p className="text-muted-foreground text-sm">
-                    {t(service.descriptionKey)}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="features" className="border-none">
-                    <AccordionTrigger className="text-sm text-muted-foreground hover:text-foreground py-2">
-                      <div className="flex items-center gap-2">
-                        <span>{t('services.view.features')}</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="space-y-2 pt-2">
-                        {service.featuresKeys.map((featureKey, featureIndex) => (
-                          <li 
-                            key={featureIndex}
-                            className="flex items-start gap-2 text-sm text-muted-foreground"
-                          >
-                            <span className={`w-1.5 h-1.5 rounded-full ${service.bgColor} mt-1.5`} />
-                            {t(featureKey)}
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </CardContent>
-            </Card>
+            <ServiceCard key={index} service={service} index={index} />
           ))}
         </div>
       </div>
