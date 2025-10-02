@@ -48,8 +48,8 @@ export function AboutSection() {
   const downloadCV = () => {
     // Simulated CV download - in a real app, this would download an actual PDF
     const link = document.createElement('a');
-    link.href = '/cv-dario-reis.pdf';
-    link.download = 'CV-Dario-Reis.pdf';
+    link.href = '/cvDarioReisFullStack.pdf';
+    link.download = 'cvDarioReisFullStack.pdf';
     link.click();
   };
 

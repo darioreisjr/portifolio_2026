@@ -158,8 +158,8 @@ export function HomeSection() {
             onClick={() => {
               // Aqui você pode adicionar o link para o seu CV
               const link = document.createElement('a');
-              link.href = '/cv-dario-reis.pdf';
-              link.download = 'CV-Dario-Reis.pdf';
+              link.href = '/cvDarioReisFullStack.pdf';
+              link.download = 'cvDarioReisFullStack.pdf';
               link.click();
             }}
           >
