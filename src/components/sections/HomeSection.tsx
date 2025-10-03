@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Download, ExternalLink, Github, Linkedin } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '../LanguageProvider';
@@ -43,6 +44,101 @@ const skills = [
   { name: 'APIs de IA', icon: FaRobot, color: 'text-[#9C27B0]' },
 ];
 
+// Variantes de animação
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.2
+    }
+  },
+  tap: {
+    scale: 0.95
+  }
+};
+
+const socialVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }),
+  hover: {
+    y: -5,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
+
+const skillCardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.05,
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }),
+  hover: {
+    y: -10,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
+
 export function HomeSection() {
   const { t } = useLanguage();
   const navigate = useNavigate();
@@ -68,106 +164,177 @@ export function HomeSection() {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
+      <motion.div 
+        className="max-w-4xl mx-auto text-center space-y-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Hero Text */}
         <div className="space-y-4">
-          <h1 className="text-4xl md:text-6xl font-bold font-mono bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold font-mono bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+            variants={titleVariants}
+          >
             Dario Reis
-          </h1>
-          <div className="text-xl md:text-2xl text-muted-foreground h-8 font-mono">
+          </motion.h1>
+          
+          <motion.div 
+            className="text-xl md:text-2xl text-muted-foreground h-8 font-mono"
+            variants={itemVariants}
+          >
             <span className="typing-effect">{typingText}</span>
-          </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          </motion.div>
+          
+          <motion.p 
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            variants={itemVariants}
+          >
             {t('home.subtitle')}
-          </p>
-          <p className="text-foreground max-w-3xl mx-auto leading-relaxed">
+          </motion.p>
+          
+          <motion.p 
+            className="text-foreground max-w-3xl mx-auto leading-relaxed"
+            variants={itemVariants}
+          >
             {t('home.description')}
-          </p>
+          </motion.p>
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button
-            size="lg"
-            className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => navigate('/projects')}
+        <motion.div 
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          variants={itemVariants}
+        >
+          <motion.div
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
           >
-            {t('home.cta.projects')}
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={handleWhatsApp}
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={() => navigate('/projects')}
+            >
+              {t('home.cta.projects')}
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
+          
+          <motion.div
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
           >
-            {t('home.cta.contact')}
-            <ExternalLink className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={handleWhatsApp}
+            >
+              {t('home.cta.contact')}
+              <ExternalLink className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
+        </motion.div>
+
+        {/* Download CV Button */}
+        <motion.div variants={itemVariants}>
+          <motion.div
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            <Button
+              variant="ghost"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/cvDarioReisFullStack.pdf';
+                link.download = 'cvDarioReisFullStack.pdf';
+                link.click();
+              }}
+            >
+              <Download className="mr-2 w-4 h-4" />
+              {t('about.download.cv')}
+            </Button>
+          </motion.div>
+        </motion.div>
 
         {/* Social Links */}
-        <div className="flex gap-4 justify-center items-center">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hover:text-primary hover:bg-primary/10 transition-colors"
-            onClick={() => window.open('https://github.com/darioreisjr', '_blank')}
+        <motion.div 
+          className="flex gap-4 justify-center items-center"
+          variants={itemVariants}
+        >
+          <motion.div
+            custom={0}
+            variants={socialVariants}
+            whileHover="hover"
           >
-            <Github className="w-5 h-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hover:text-primary hover:bg-primary/10 transition-colors"
-            onClick={() => window.open('https://linkedin.com/in/darioreisjr', '_blank')}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:text-primary hover:bg-primary/10 transition-colors"
+              onClick={() => window.open('https://github.com/darioreisjr', '_blank')}
+            >
+              <Github className="w-5 h-5" />
+            </Button>
+          </motion.div>
+          
+          <motion.div
+            custom={1}
+            variants={socialVariants}
+            whileHover="hover"
           >
-            <Linkedin className="w-5 h-5" />
-          </Button>
-        </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:text-primary hover:bg-primary/10 transition-colors"
+              onClick={() => window.open('https://linkedin.com/in/darioreisjr', '_blank')}
+            >
+              <Linkedin className="w-5 h-5" />
+            </Button>
+          </motion.div>
+        </motion.div>
 
         {/* Skills Section */}
-        <div className="space-y-6 pt-8">
-          <h3 className="text-xl font-semibold text-foreground">{t('home.skills.title')}</h3>
+        <motion.div 
+          className="space-y-6 pt-8"
+          variants={itemVariants}
+        >
+          <motion.h3 
+            className="text-xl font-semibold text-foreground"
+            variants={itemVariants}
+          >
+            {t('home.skills.title')}
+          </motion.h3>
+          
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {skills.map((skill, index) => {
               const IconComponent = skill.icon;
               return (
-                <Card 
-                  key={skill.name} 
-                  className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 group"
-                  style={{ animationDelay: `${index * 50}ms` }}
+                <motion.div
+                  key={skill.name}
+                  custom={index}
+                  variants={skillCardVariants}
+                  whileHover="hover"
                 >
-                  <CardContent className="p-4 flex flex-col items-center gap-2">
-                    <IconComponent className={`w-8 h-8 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
-                    <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">
-                      {skill.name}
-                    </span>
-                  </CardContent>
-                </Card>
+                  <Card 
+                    className="bg-card border-border hover:border-primary transition-all duration-300 cursor-pointer"
+                  >
+                    <CardContent className="flex flex-col items-center justify-center p-4 space-y-2 min-h-[100px]">
+                      <IconComponent className={`w-8 h-8 ${skill.color}`} />
+                      <span className="text-[10px] font-medium text-center text-card-foreground whitespace-nowrap">
+                        {skill.name}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               );
             })}
           </div>
-        </div>
-
-        {/* Download CV Button */}
-        <div className="pt-4">
-          <Button
-            variant="ghost"
-            className="text-muted-foreground hover:text-foreground"
-            onClick={() => {
-              // Aqui você pode adicionar o link para o seu CV
-              const link = document.createElement('a');
-              link.href = '/cvDarioReisFullStack.pdf';
-              link.download = 'cvDarioReisFullStack.pdf';
-              link.click();
-            }}
-          >
-            <Download className="mr-2 w-4 h-4" />
-            {t('about.download.cv')}
-          </Button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
