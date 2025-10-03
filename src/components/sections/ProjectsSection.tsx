@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '../LanguageProvider';
 import techcompass from '../../../public/techcompass.png';
 import portalnoticias from '../../../public/portaldenoticias.png';
+import wemoment from '../../../public/wemoment.png';
 
 interface Project {
   id: number;
@@ -34,13 +35,13 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: 'Task Manager App',
-    description: 'Aplicativo mobile de gerenciamento de tarefas com sincronização em tempo real, notificações push e modo offline.',
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop',
-    technologies: ['React Native', 'Expo', 'Firebase', 'AsyncStorage'],
-    category: 'mobile',
-    demoUrl: '#',
-    githubUrl: '#',
+    title: 'WeMoment - Aplicativo Web para Casais',
+    description: 'Um aplicativo web moderno e romântico desenvolvido especialmente para casais registrarem, planejarem e celebrarem seus momentos especiais juntos. Com design responsivo e interface intuitiva, o app oferece uma experiência completa para organizar a vida a dois.',
+    image: wemoment,
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Lucide React', 'React Context', 'useReducer', 'localStorage', 'FileReader API', 'Canvas API', 'Base64 Encoding'],
+    category: 'web',
+    demoUrl: 'https://wemoment.darioreis.dev/',
+    githubUrl: 'https://github.com/darioreisjr/WeMoment',
     featured: true
   },
   {
@@ -145,7 +146,7 @@ export function ProjectsSection() {
             <MotionCard
               key={project.id}
               className={`bg-card border-border group ${project.featured ? 'ring-2 ring-primary/20' : ''}`}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.03,
                 borderColor: 'hsl(var(--primary) / 0.5)',
                 transition: { duration: 0.3, ease: "easeOut" }
