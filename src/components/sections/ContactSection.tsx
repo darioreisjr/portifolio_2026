@@ -39,7 +39,7 @@ export function ContactSection() {
 
       toast({
         title: t('contact.form.success'),
-        description: 'Retornarei em breve!',
+        description: t('contact.form.success_description'),
       });
 
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -58,7 +58,7 @@ export function ContactSection() {
       icon: BsWhatsapp,
       label: t('contact.whatsapp'),
       value: '+55 (11) 96188-9886',
-      action: () => window.open('https://wa.me/5511961889886?text=Olá! Vi seu portfólio e gostaria de conversar.', '_blank'),
+      action: () => window.open(`https://wa.me/5511961889886?text=${encodeURIComponent(t('contact.whatsapp.prefill'))}` , '_blank'),
       bgColor: 'bg-green-500/10',
       color: 'text-green-500'
     },
@@ -80,7 +80,7 @@ export function ContactSection() {
     },
     {
       icon: BsEnvelope,
-      label: 'Email',
+      label: t('contact.email'),
       value: 'dev.darioreis@gmail.com',
       action: () => window.open('mailto:dev.darioreis@gmail.com', '_blank'),
       bgColor: 'bg-orange-500/10',
@@ -198,7 +198,7 @@ export function ContactSection() {
                       onChange={handleInputChange}
                       required
                       className="bg-background border-border text-foreground"
-                      placeholder="Seu nome"
+                      placeholder={t('contact.form.placeholder.name')}
                     />
                   </motion.div>
 
@@ -217,7 +217,7 @@ export function ContactSection() {
                       onChange={handleInputChange}
                       required
                       className="bg-background border-border text-foreground"
-                      placeholder="seu@email.com"
+                      placeholder={t('contact.form.placeholder.email')}
                     />
                   </motion.div>
 
@@ -235,7 +235,7 @@ export function ContactSection() {
                       onChange={handleInputChange}
                       required
                       className="bg-background border-border text-foreground"
-                      placeholder="Assunto da mensagem"
+                      placeholder={t('contact.form.placeholder.subject')}
                     />
                   </motion.div>
 
@@ -253,7 +253,7 @@ export function ContactSection() {
                       onChange={handleInputChange}
                       required
                       className="bg-background border-border text-foreground min-h-[120px]"
-                      placeholder="Descreva seu projeto ou dúvida..."
+                      placeholder={t('contact.form.placeholder.message')}
                     />
                   </motion.div>
 
@@ -266,7 +266,7 @@ export function ContactSection() {
                       className="w-full"
                     >
                       {isLoading ? (
-                        'Enviando...'
+                        t('contact.form.sending')
                       ) : (
                         <>
                           <Send className="w-4 h-4 mr-2" />
@@ -337,7 +337,7 @@ export function ContactSection() {
                     >
                       <MapPin className="w-5 h-5" />
                     </motion.div>
-                    Localização
+                    {t('contact.location.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -349,10 +349,10 @@ export function ContactSection() {
                     className="space-y-2"
                   >
                     <p className="text-foreground font-medium">
-                      São Paulo, Brasil
+                      {t('contact.location.city_country')}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      Disponível para colaboração em projetos no Brasil e no exterior.
+                      {t('contact.location.available')}
                     </p>
                   </motion.div>
                   <motion.div
@@ -363,7 +363,7 @@ export function ContactSection() {
                     className="flex items-center gap-2 text-sm text-muted-foreground"
                   >
                     <Phone className="w-4 h-4" />
-                    <span>Horário comercial: 9h às 18h (GMT-3)</span>
+                    <span>{t('contact.location.hours')}</span>
                   </motion.div>
                 </CardContent>
               </Card>

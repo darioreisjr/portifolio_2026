@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useTheme } from './ThemeProvider';
 import { useLanguage, Language } from './LanguageProvider';
+import { useLocation } from 'react-router-dom';
 
 // Flag Components
 const BrazilFlag = () => (
@@ -39,21 +40,41 @@ const PortugalFlag = () => (
   </svg>
 );
 
+const SpainFlag = () => (
+  <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="16" fill="#AA151B"/>
+    <rect y="4" width="24" height="8" fill="#F1BF00"/>
+  </svg>
+);
+
 const languageFlags: Record<Language, React.ReactElement> = {
   'pt-BR': <BrazilFlag />,
   'en': <USAFlag />,
   'pt-PT': <PortugalFlag />,
+  'es': <SpainFlag />,
 };
 
 const languageNames = {
   'pt-BR': 'Português (BR)',
   'en': 'English',
   'pt-PT': 'Português (PT)',
+  'es': 'Español',
 };
 
 export function Header() {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
+  const location = useLocation();
+
+  const routeToKeyMap: Record<string, string> = {
+    '/': 'nav.home',
+    '/about': 'nav.about',
+    '/services': 'nav.services',
+    '/projects': 'nav.projects',
+    '/contact': 'nav.contact',
+  };
+  const pageKey = routeToKeyMap[location.pathname];
+  const headerFileLabel = `${pageKey ? t(pageKey) : t('404.title')}.tsx`;
 
   return (
     <header className="vscode-titlebar sticky top-0 z-50 backdrop-blur-md">
@@ -67,7 +88,7 @@ export function Header() {
           </div>
           <div className="flex items-center gap-2 ml-4">
             <FileText className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm font-mono text-foreground">index.tsx</span>
+            <span className="text-sm font-mono text-foreground">{headerFileLabel}</span>
           </div>
         </div>
 
@@ -109,15 +130,15 @@ export function Header() {
             <DropdownMenuContent align="end" className="bg-popover border border-border">
               <DropdownMenuItem onClick={() => setTheme('light')} className="cursor-pointer">
                 <Sun className="w-4 h-4 mr-2" />
-                Light
+                {t('theme.light')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setTheme('dark')} className="cursor-pointer">
                 <Moon className="w-4 h-4 mr-2" />
-                Dark
+                {t('theme.dark')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setTheme('system')} className="cursor-pointer">
                 <Monitor className="w-4 h-4 mr-2" />
-                System
+                {t('theme.system')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

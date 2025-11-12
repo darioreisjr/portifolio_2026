@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Navigation } from '@/components/Navigation';
 import { StatusBar } from '@/components/StatusBar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function Layout() {
   const isMobile = useIsMobile();
   const location = useLocation();
+  const { t } = useLanguage();
+
+  useEffect(() => {
+    const map: Record<string, string> = {
+      '/': 'nav.home',
+      '/about': 'nav.about',
+      '/services': 'nav.services',
+      '/projects': 'nav.projects',
+      '/contact': 'nav.contact',
+    };
+    const key = map[location.pathname];
+    const pageTitle = key ? t(key) : '';
+    document.title = pageTitle ? `${pageTitle} | ${t('site.name')}` : t('site.name');
+  }, [location.pathname, t]);
 
   // Transição inspirada no VS Code: minimalista e eficiente
   // Combina fade suave com movimento horizontal sutil

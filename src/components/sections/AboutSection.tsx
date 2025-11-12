@@ -8,37 +8,37 @@ import { useLanguage } from '../LanguageProvider';
 const timeline = [
   {
     year: '2025',
-    title: 'Front-end Developer',
+    titleKey: 'about.timeline.2025.probrain.title',
     company: 'ProBrain | Afinando o Cérebro',
-    description: 'Liderando equipe de desenvolvimento frontend, implementando Atuação no desenvolvimento de plataformas web modernas e escaláveis usando ReactJS, Next.js e TypeScript. Implementação de componentes reutilizáveis, gerenciamento de estado (Redux, Context API), integração com APIs REST e autenticação com AWS Cognito. Foco em performance e experiência do usuário. escaláveis com React e Next.js.',
+    descriptionKey: 'about.timeline.2025.probrain.description',
     type: 'work'
   },
   {
     year: '2025',
-    title: 'Foundations of Cybersecurity',
+    titleKey: 'about.timeline.2025.security.title',
     company: 'Google & Reichman Tech School',
-    description: 'Curso focado em fundamentos de segurança da informação, boas práticas e proteção de aplicações.',
+    descriptionKey: 'about.timeline.2025.security.description',
     type: 'education'
   },
   {
     year: '2023',
-    title: 'Desenvolvedor Web Front-end (Freelancer)',
+    titleKey: 'about.timeline.2023.workana.title',
     company: 'Workana',
-    description: 'Criação de aplicações completas com React, Next.js, Vite e Node.js. Desenvolvimento de funcionalidades com Hooks, testes unitários com Jest e integração com APIs RESTful. Experiência em UI/UX para aplicações responsivas e escaláveis. ',
+    descriptionKey: 'about.timeline.2023.workana.description',
     type: 'work'
   },
   {
     year: '2023',
-    title: 'Analista de eSocial',
+    titleKey: 'about.timeline.2023.esocial.title',
     company: 'Healthwork Medicina e Segurança no Trabalho',
-    description: 'Responsável pela criação de eventos em XML no eSocial (admissão, demissão, alterações cadastrais, etc.), garantindo conformidade legal e prazos exigidos. Atuava na manutenção e atualização de cadastros de colaboradores, corrigindo inconsistências e assegurando integridade dos dados. Realizava a análise e resolução de erros cadastrais, além da pesquisa e recuperação de matrículas no eSocial utilizando ferramentas avançadas. Domínio da plataforma eSocial, legislação trabalhista e validação de arquivos XML.',
+    descriptionKey: 'about.timeline.2023.esocial.description',
     type: 'work'
   },
   {
     year: '2021',
-    title: 'Graduação – Análise e Desenvolvimento de Sistemas',
+    titleKey: 'about.timeline.2021.estacio.title',
     company: 'Estácio',
-    description: 'Formação em desenvolvimento de software com foco em front-end e back-end, estruturas de dados e bancos de dados relacionais. ',
+    descriptionKey: 'about.timeline.2021.estacio.description',
     type: 'education'
   },
 ];
@@ -170,7 +170,7 @@ export function AboutSection() {
                   <p className="text-muted-foreground">{t('home.title')}</p>
                   <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                     <MapPin className="w-4 h-4" />
-                    <span>São Paulo, SP</span>
+                    <span>{t('about.location.city_state')}</span>
                   </div>
                 </div>
                 <motion.div
@@ -232,9 +232,9 @@ export function AboutSection() {
                       )}
                     </div>
                     <div className="flex-1 space-y-1">
-                      <h4 className="font-semibold text-foreground">{item.title}</h4>
+                      <h4 className="font-semibold text-foreground">{t(item.titleKey)}</h4>
                       <p className="text-sm text-primary">{item.company}</p>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                      <p className="text-sm text-muted-foreground">{t(item.descriptionKey)}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -247,9 +247,9 @@ export function AboutSection() {
               variants={containerVariants}
             >
               {[
-                { value: '20+', label: 'Projetos', color: 'text-primary' },
-                { value: '5+', label: 'Anos Exp.', color: 'text-accent' },
-                { value: '30+', label: 'Clientes', color: 'text-success' }
+                { value: '20+', labelKey: 'about.stats.projects', color: 'text-primary' },
+                { value: '5+', labelKey: 'about.stats.years', color: 'text-accent' },
+                { value: '30+', labelKey: 'about.stats.clients', color: 'text-success' }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -267,7 +267,7 @@ export function AboutSection() {
                       >
                         {stat.value}
                       </motion.div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                      <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
                     </CardContent>
                   </Card>
                 </motion.div>

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type Language = 'pt-BR' | 'en' | 'pt-PT';
+export type Language = 'pt-BR' | 'en' | 'pt-PT' | 'es';
 
 interface LanguageContextType {
   language: Language;
@@ -12,6 +12,12 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const translations = {
   'pt-BR': {
+    // Theme
+    'theme.light': 'Claro',
+    'theme.dark': 'Escuro',
+    'theme.system': 'Sistema',
+    // Site
+    'site.name': 'Dario Reis',
     // Navigation
     'nav.home': 'Início',
     'nav.about': 'Sobre',
@@ -39,6 +45,38 @@ const translations = {
     'about.description': 'Desenvolvedor apaixonado por tecnologia com foco em JavaScript, React e Node.js. Experiência em criar aplicações web modernas, performáticas e acessíveis.',
     'about.download.cv': 'Download CV',
     'about.timeline.title': 'Trajetória Profissional',
+    'about.location.city_state': 'São Paulo, SP',
+    // About timeline items
+    'about.timeline.2025.probrain.title': 'Front-end Developer',
+    'about.timeline.2025.probrain.description': 'Atuação no desenvolvimento de plataformas web modernas e escaláveis usando ReactJS, Next.js e TypeScript. Implementação de componentes reutilizáveis, gestão de estado (Redux, Context API), integração com APIs REST e autenticação com AWS Cognito, com foco em performance e experiência do utilizador.',
+    'about.timeline.2025.security.title': 'Fundamentos de Cibersegurança',
+    'about.timeline.2025.security.description': 'Curso focado nos fundamentos de segurança da informação, boas práticas e proteção de aplicações.',
+    'about.timeline.2023.workana.title': 'Desenvolvedor Web Front-end (Freelancer)',
+    'about.timeline.2023.workana.description': 'Criação de aplicações com React, Next.js, Vite e Node.js. Desenvolvimento de funcionalidades com Hooks, testes unitários com Jest e integração com APIs RESTful. Experiência em UI/UX para aplicações responsivas e escaláveis.',
+    'about.timeline.2023.esocial.title': 'Analista de eSocial',
+    'about.timeline.2023.esocial.description': 'Responsável pela criação de eventos em XML no eSocial (admissão, demissão, alterações cadastrais, etc.), garantindo conformidade legal e prazos. Manutenção de cadastros, análise e resolução de erros, e validação de ficheiros XML.',
+    'about.timeline.2021.estacio.title': 'Licenciatura – Análise e Desenvolvimento de Sistemas',
+    'about.timeline.2021.estacio.description': 'Formação em desenvolvimento de software com foco em front-end e back-end, estruturas de dados e bases de dados relacionais.',
+    // About stats
+    'about.stats.projects': 'Projectos',
+    'about.stats.years': 'Anos Exp.',
+    'about.stats.clients': 'Clientes',
+    'about.location.city_state': 'São Paulo, SP',
+    // About timeline items
+    'about.timeline.2025.probrain.title': 'Front-end Developer',
+    'about.timeline.2025.probrain.description': 'Atuação no desenvolvimento de plataformas web modernas e escaláveis usando ReactJS, Next.js e TypeScript. Implementação de componentes reutilizáveis, gerenciamento de estado (Redux, Context API), integração com APIs REST e autenticação com AWS Cognito, com foco em performance e experiência do usuário.',
+    'about.timeline.2025.security.title': 'Fundamentos de Cibersegurança',
+    'about.timeline.2025.security.description': 'Curso focado em fundamentos de segurança da informação, boas práticas e proteção de aplicações.',
+    'about.timeline.2023.workana.title': 'Desenvolvedor Web Front-end (Freelancer)',
+    'about.timeline.2023.workana.description': 'Criação de aplicações com React, Next.js, Vite e Node.js. Desenvolvi funcionalidades com Hooks, testes unitários com Jest e integração com APIs RESTful. Experiência em UI/UX para aplicações responsivas e escaláveis.',
+    'about.timeline.2023.esocial.title': 'Analista de eSocial',
+    'about.timeline.2023.esocial.description': 'Responsável pela criação de eventos em XML no eSocial (admissão, demissão, alterações cadastrais etc.), garantindo conformidade legal e prazos. Manutenção de cadastros, análise e resolução de erros e validação de arquivos XML.',
+    'about.timeline.2021.estacio.title': 'Graduação – Análise e Desenvolvimento de Sistemas',
+    'about.timeline.2021.estacio.description': 'Formação em desenvolvimento de software com foco em front-end e back-end, estruturas de dados e bancos de dados relacionais.',
+    // About stats
+    'about.stats.projects': 'Projetos',
+    'about.stats.years': 'Anos Exp.',
+    'about.stats.clients': 'Clientes',
     
     // Services
     'services.title': 'Serviços',
@@ -197,6 +235,22 @@ const translations = {
     'projects.filter.backend': 'Backend',
     'projects.demo': 'Ver Demo',
     'projects.code': 'Ver Código',
+    'projects.featured': 'Destaque',
+    // Project items
+    'projects.items.techcompass.title': 'Tech Compass',
+    'projects.items.techcompass.description': 'Uma aplicação React moderna para descobrir carreiras em tecnologia através de um questionário interativo. Projeto atualizado com as tecnologias mais recentes do ecossistema React.',
+    'projects.items.wemoment_app.title': 'WeMoment - Aplicativo Web para Casais',
+    'projects.items.wemoment_app.description': 'Um aplicativo web moderno e romântico desenvolvido especialmente para casais registrarem, planejarem e celebrarem seus momentos especiais juntos. Com design responsivo e interface intuitiva, o app oferece uma experiência completa para organizar a vida a dois.',
+    'projects.items.api_wemoment.title': 'API WeMoment',
+    'projects.items.api_wemoment.description': 'API RESTful construída com Express e Supabase para autenticação de usuários do projeto WeMoment. O serviço oferece endpoints para cadastro, login, recuperação de senha e consulta de perfil autenticado, além de uma configuração de CORS dinâmica para controlar o acesso a partir dos ambientes web do cliente.',
+    'projects.items.lp_wemoment.title': 'WeMoment – Landing Page',
+    'projects.items.lp_wemoment.description': 'Landing page moderna criada para apresentar um super app que ajuda casais a organizarem compromissos, sonhos e memórias em um único lugar. O projeto combina performance, SEO avançado, storytelling envolvente e uma experiência visual rica construída sobre um design system próprio.',
+    'projects.items.eventflow.title': 'EventFlow',
+    'projects.items.eventflow.description': 'Uma plataforma moderna e minimalista para descobrir e participar dos melhores eventos, com design limpo, dark mode e animações suaves.',
+    'projects.items.stackid.title': 'StackID',
+    'projects.items.stackid.description': 'Aplicação web divertida e interativa que gera uma identidade tecnológica ("crachá tech") personalizada com base na sua data de nascimento. É como se fosse um "horóscopo para developers" - uma ferramenta lúdica para a comunidade de tecnologia.',
+    'projects.items.portal_tech.title': 'Portal de Notícias de Tecnologia',
+    'projects.items.portal_tech.description': 'Esta homepage foi criada para oferecer uma experiência intuitiva e moderna para usuários de desktop, destacando as últimas novidades em tecnologia, inteligência artificial, robótica e inovações digitais.',
     
     // Contact
     'contact.title': 'Contato',
@@ -206,12 +260,25 @@ const translations = {
     'contact.form.subject': 'Assunto',
     'contact.form.message': 'Mensagem',
     'contact.form.send': 'Enviar Mensagem',
+    'contact.form.sending': 'Enviando...',
     'contact.form.success': 'Mensagem enviada com sucesso!',
+    'contact.form.success_description': 'Retornarei em breve!',
     'contact.form.error': 'Erro ao enviar mensagem. Tente novamente.',
+    'contact.form.placeholder.name': 'Seu nome',
+    'contact.form.placeholder.email': 'seu@email.com',
+    'contact.form.placeholder.subject': 'Assunto da mensagem',
+    'contact.form.placeholder.message': 'Descreva seu projeto ou dúvida...',
     'contact.quick.title': 'Contato Rápido',
     'contact.whatsapp': 'WhatsApp',
     'contact.linkedin': 'LinkedIn',
     'contact.github': 'GitHub',
+    'contact.email': 'Email',
+    'contact.whatsapp.prefill': 'Olá! Vi seu portfólio e gostaria de conversar.',
+    // Contact location
+    'contact.location.title': 'Localização',
+    'contact.location.city_country': 'São Paulo, Brasil',
+    'contact.location.available': 'Disponível para colaboração em projetos no Brasil e no exterior.',
+    'contact.location.hours': 'Horário comercial: 9h às 18h (GMT-3)',
     
     // FAQ
     'faq.title': 'Perguntas Frequentes',
@@ -255,6 +322,12 @@ const translations = {
   'faq.answer6': 'Você pode entrar em contato comigo através de:\n\n📱 WhatsApp: Clique no botão "Falar no WhatsApp" no site\n💼 LinkedIn: linkedin.com/in/darioreisjr\n🐙 GitHub: github.com/darioreisjr\n📧 Email: Disponível no formulário de contato do site\n\nEstou sempre aberto a novos projetos e oportunidades de colaboração!'
   },
   'en': {
+    // Theme
+    'theme.light': 'Light',
+    'theme.dark': 'Dark',
+    'theme.system': 'System',
+    // Site
+    'site.name': 'Dario Reis',
     // Navigation
     'nav.home': 'Home',
     'nav.about': 'About',
@@ -282,6 +355,22 @@ const translations = {
     'about.description': 'Passionate developer focused on JavaScript, React and Node.js. Experience creating modern, performant and accessible web applications.',
     'about.download.cv': 'Download CV',
     'about.timeline.title': 'Professional Journey',
+    'about.location.city_state': 'São Paulo, SP',
+    // About timeline items
+    'about.timeline.2025.probrain.title': 'Front-end Developer',
+    'about.timeline.2025.probrain.description': 'Working on modern, scalable web platforms using ReactJS, Next.js, and TypeScript. Building reusable components, managing state (Redux, Context API), integrating REST APIs, and implementing authentication with AWS Cognito, focusing on performance and UX.',
+    'about.timeline.2025.security.title': 'Foundations of Cybersecurity',
+    'about.timeline.2025.security.description': 'Course focused on information security fundamentals, best practices, and application protection.',
+    'about.timeline.2023.workana.title': 'Frontend Web Developer (Freelancer)',
+    'about.timeline.2023.workana.description': 'Built apps with React, Next.js, Vite, and Node.js. Implemented features with Hooks, unit tests with Jest, and RESTful API integrations. Experience in responsive and scalable UI/UX.',
+    'about.timeline.2023.esocial.title': 'eSocial Analyst',
+    'about.timeline.2023.esocial.description': 'Created XML events in eSocial (admission, termination, updates, etc.), ensuring legal compliance and deadlines. Maintained records, analyzed issues, and validated XML files.',
+    'about.timeline.2021.estacio.title': 'BSc – Systems Analysis and Development',
+    'about.timeline.2021.estacio.description': 'Training in software development focused on front-end and back-end, data structures, and relational databases.',
+    // About stats
+    'about.stats.projects': 'Projects',
+    'about.stats.years': 'Years Exp.',
+    'about.stats.clients': 'Clients',
     
     // Services
     'services.title': 'Services',
@@ -440,6 +529,22 @@ const translations = {
     'projects.filter.backend': 'Backend',
     'projects.demo': 'View Demo',
     'projects.code': 'View Code',
+    'projects.featured': 'Featured',
+    // Project items
+    'projects.items.techcompass.title': 'Tech Compass',
+    'projects.items.techcompass.description': 'A modern React application to discover tech careers through an interactive questionnaire. Updated with the latest technologies from the React ecosystem.',
+    'projects.items.wemoment_app.title': 'WeMoment - Web App for Couples',
+    'projects.items.wemoment_app.description': 'A modern and romantic web app designed for couples to record, plan, and celebrate their special moments together. With responsive design and an intuitive interface, it offers a complete experience to organize life as a couple.',
+    'projects.items.api_wemoment.title': 'WeMoment API',
+    'projects.items.api_wemoment.description': 'RESTful API built with Express and Supabase for user authentication in the WeMoment project. Provides endpoints for sign up, login, password recovery, and authenticated profile, plus dynamic CORS configuration to control access from the client’s web environments.',
+    'projects.items.lp_wemoment.title': 'WeMoment – Landing Page',
+    'projects.items.lp_wemoment.description': 'A modern landing page to present a super app that helps couples organize appointments, dreams, and memories in one place. The project combines performance, advanced SEO, engaging storytelling, and a rich visual experience built on a custom design system.',
+    'projects.items.eventflow.title': 'EventFlow',
+    'projects.items.eventflow.description': 'A modern and minimalist platform to discover and join the best events, featuring clean design, dark mode, and smooth animations.',
+    'projects.items.stackid.title': 'StackID',
+    'projects.items.stackid.description': 'A fun and interactive web app that generates a personalized tech identity ("tech badge") based on your birth date. It’s like a “horoscope for developers” — a playful tool for the tech community.',
+    'projects.items.portal_tech.title': 'Technology News Portal',
+    'projects.items.portal_tech.description': 'A homepage designed to deliver an intuitive and modern experience for desktop users, highlighting the latest news in technology, artificial intelligence, robotics, and digital innovation.',
     
     // Contact
     'contact.title': 'Contact',
@@ -449,12 +554,25 @@ const translations = {
     'contact.form.subject': 'Subject',
     'contact.form.message': 'Message',
     'contact.form.send': 'Send Message',
+    'contact.form.sending': 'Sending...',
     'contact.form.success': 'Message sent successfully!',
+    'contact.form.success_description': 'I will get back to you soon!',
     'contact.form.error': 'Error sending message. Please try again.',
+    'contact.form.placeholder.name': 'Your name',
+    'contact.form.placeholder.email': 'your@email.com',
+    'contact.form.placeholder.subject': 'Message subject',
+    'contact.form.placeholder.message': 'Describe your project or question...',
     'contact.quick.title': 'Quick Contact',
     'contact.whatsapp': 'WhatsApp',
     'contact.linkedin': 'LinkedIn',
     'contact.github': 'GitHub',
+    'contact.email': 'Email',
+    'contact.whatsapp.prefill': "Hello! I saw your portfolio and I'd like to chat.",
+    // Contact location
+    'contact.location.title': 'Location',
+    'contact.location.city_country': 'São Paulo, Brazil',
+    'contact.location.available': 'Available for collaboration on projects in Brazil and abroad.',
+    'contact.location.hours': 'Business hours: 9am to 6pm (GMT-3)',
     
     // FAQ
     'faq.title': 'Frequently Asked Questions',
@@ -497,7 +615,267 @@ const translations = {
   
   'faq.answer6': 'You can contact me through:\n\n📱 WhatsApp: Click the "Talk on WhatsApp" button on the website\n💼 LinkedIn: linkedin.com/in/darioreisjr\n🐙 GitHub: github.com/darioreisjr\n📧 Email: Available in the website contact form\n\nI\'m always open to new projects and collaboration opportunities!'
   },
+  'es': {
+    // Theme
+    'theme.light': 'Claro',
+    'theme.dark': 'Oscuro',
+    'theme.system': 'Sistema',
+    // Navigation
+    'nav.home': 'Inicio',
+    'nav.about': 'Sobre mí',
+    'nav.services': 'Servicios',
+    'nav.projects': 'Proyectos',
+    'nav.contact': 'Contacto',
+
+    // Site
+    'site.name': 'Dario Reis',
+
+    // 404 Page
+    '404.title': 'Página no encontrada',
+    '404.description': '¡Ups! La página que buscas no existe o fue movida a otro lugar.',
+    '404.button.home': 'Volver al inicio',
+    '404.button.back': 'Volver',
+    '404.links.title': 'También puedes acceder a:',
+
+    // Home
+    'home.title': 'Desarrollador de Software',
+    'home.subtitle': 'Especializado en crear soluciones con React, Node.js, AWS e IA',
+    'home.description': 'Creando experiencias digitales modernas con foco en rendimiento, accesibilidad y experiencia de usuario.',
+    'home.cta.projects': 'Ver proyectos',
+    'home.cta.contact': 'Hablar por WhatsApp',
+    'home.skills.title': 'Tecnologías principales',
+
+    // About
+    'about.title': 'Sobre mí',
+    'about.description': 'Desarrollador apasionado por la tecnología, enfocado en JavaScript, React y Node.js. Experiencia creando aplicaciones web modernas, con rendimiento y accesibilidad.',
+    'about.download.cv': 'Descargar CV',
+    'about.timeline.title': 'Trayectoria profesional',
+    'about.location.city_state': 'São Paulo, SP',
+    // About timeline items
+    'about.timeline.2025.probrain.title': 'Desarrollador Front-end',
+    'about.timeline.2025.probrain.description': 'Trabajo en plataformas web modernas y escalables con ReactJS, Next.js y TypeScript. Componentes reutilizables, gestión de estado (Redux, Context API), integración con APIs REST y autenticación con AWS Cognito, enfocado en performance y UX.',
+    'about.timeline.2025.security.title': 'Fundamentos de Ciberseguridad',
+    'about.timeline.2025.security.description': 'Curso enfocado en fundamentos de seguridad de la información, buenas prácticas y protección de aplicaciones.',
+    'about.timeline.2023.workana.title': 'Desarrollador Web Front-end (Freelancer)',
+    'about.timeline.2023.workana.description': 'Creación de aplicaciones con React, Next.js, Vite y Node.js. Funcionalidades con Hooks, pruebas unitarias con Jest e integración con APIs RESTful. Experiencia en UI/UX responsiva y escalable.',
+    'about.timeline.2023.esocial.title': 'Analista de eSocial',
+    'about.timeline.2023.esocial.description': 'Responsable de crear eventos XML en eSocial (admisión, despido, cambios de datos, etc.), asegurando cumplimiento legal y plazos. Mantenimiento de registros, análisis y resolución de errores, y validación de archivos XML.',
+    'about.timeline.2021.estacio.title': 'Graduación – Análisis y Desarrollo de Sistemas',
+    'about.timeline.2021.estacio.description': 'Formación en desarrollo de software con foco en front-end y back-end, estructuras de datos y bases de datos relacionales.',
+    // About stats
+    'about.stats.projects': 'Proyectos',
+    'about.stats.years': 'Años Exp.',
+    'about.stats.clients': 'Clientes',
+
+    // Services
+    'services.title': 'Servicios',
+    'services.subtitle': 'Soluciones completas para tus necesidades digitales',
+    'services.view.features': 'Ver características',
+
+    // Desarrollo Web
+    'services.web.title': 'Desarrollo Web',
+    'services.web.description': 'Sitios y aplicaciones web modernas con React, Next.js y TypeScript',
+    'services.web.feature1': 'Landing Pages responsivas',
+    'services.web.feature2': 'E‑commerce con Stripe',
+    'services.web.feature3': 'Dashboards administrativos',
+    'services.web.feature4': 'Progressive Web Apps (PWA)',
+    'services.web.feature5': 'Optimización SEO avanzada',
+
+    // Aplicaciones Móviles
+    'services.mobile.title': 'Aplicaciones Móviles',
+    'services.mobile.description': 'Apps híbridas con React Native y Progressive Web Apps',
+    'services.mobile.feature1': 'Apps híbridas con React Native',
+    'services.mobile.feature2': 'PWAs instalables',
+    'services.mobile.feature3': 'Integración con APIs nativas',
+    'services.mobile.feature4': 'Publicación en stores',
+    'services.mobile.feature5': 'Notificaciones push',
+
+    // API y Backend
+    'services.backend.title': 'API y Backend',
+    'services.backend.description': 'APIs REST y GraphQL con Node.js, Express y bases de datos',
+    'services.backend.feature1': 'APIs REST y GraphQL',
+    'services.backend.feature2': 'Autenticación y autorización',
+    'services.backend.feature3': 'Bases de datos PostgreSQL/MongoDB',
+    'services.backend.feature4': 'Deploy en la nube (Vercel/AWS)',
+    'services.backend.feature5': 'Documentación OpenAPI',
+
+    // Consultoría Tech
+    'services.consulting.title': 'Consultoría Tech',
+    'services.consulting.description': 'Auditoría de código, arquitectura y optimización de rendimiento',
+    'services.consulting.feature1': 'Code review y refactorización',
+    'services.consulting.feature2': 'Arquitectura de aplicaciones',
+    'services.consulting.feature3': 'Optimización de rendimiento',
+    'services.consulting.feature4': 'Mentoría técnica',
+    'services.consulting.feature5': 'Implementación de buenas prácticas',
+
+    // Formularios Interactivos
+    'services.forms.title': 'Implementación de Formularios Interactivos',
+    'services.forms.description': 'Creación de formularios con validación de datos y feedback visual en tiempo real.',
+    'services.forms.feature1': 'Validación en tiempo real',
+    'services.forms.feature2': 'Máscaras de input personalizadas',
+    'services.forms.feature3': 'Feedback visual de errores',
+    'services.forms.feature4': 'Formularios multi‑paso',
+    'services.forms.feature5': 'Subida de archivos con vista previa',
+
+    // Interfaces Responsivas
+    'services.responsive.title': 'Desarrollo de Interfaces Responsivas',
+    'services.responsive.description': 'Creación de layouts adaptables para ofrecer una experiencia consistente en diferentes dispositivos.',
+    'services.responsive.feature1': 'Diseño mobile‑first',
+    'services.responsive.feature2': 'Breakpoints personalizados',
+    'services.responsive.feature3': 'Optimización para tablets',
+    'services.responsive.feature4': 'Interfaces aptas para touch',
+    'services.responsive.feature5': 'Compatibilidad cross‑browser',
+
+    // Componentes Interactivos
+    'services.components.title': 'Desarrollo de Componentes Interactivos',
+    'services.components.description': 'Creación de componentes front‑end interactivos como sliders, modales, carruseles, entre otros.',
+    'services.components.feature1': 'Sliders y carruseles',
+    'services.components.feature2': 'Modales y diálogos',
+    'services.components.feature3': 'Dropdowns y menús',
+    'services.components.feature4': 'Tooltips y popovers',
+    'services.components.feature5': 'Drag and drop',
+
+    // Integraciones de API
+    'services.api.title': 'Integraciones de API',
+    'services.api.description': 'Integración de APIs para mejorar la funcionalidad y experiencia del usuario.',
+    'services.api.feature1': 'APIs REST y GraphQL',
+    'services.api.feature2': 'Autenticación OAuth',
+    'services.api.feature3': 'Webhooks',
+    'services.api.feature4': 'Rate limiting',
+    'services.api.feature5': 'Manejo robusto de errores',
+
+    // Portafolios Online
+    'services.portfolio.title': 'Desarrollo de Portafolios Online',
+    'services.portfolio.description': 'Creación de sitios personalizados para exhibir el trabajo y habilidades de profesionales en diversas áreas.',
+    'services.portfolio.feature1': 'Galería de proyectos',
+    'services.portfolio.feature2': 'Blog integrado',
+    'services.portfolio.feature3': 'Sección de testimonios',
+    'services.portfolio.feature4': 'Formulario de contacto',
+    'services.portfolio.feature5': 'SEO optimizado',
+
+    // Páginas 404
+    'services.404.title': 'Desarrollo de Páginas 404',
+    'services.404.description': 'Creación de páginas de error personalizadas para mantener a los usuarios comprometidos cuando no se encuentra una página.',
+    'services.404.feature1': 'Diseño creativo',
+    'services.404.feature2': 'Sugerencias de navegación',
+    'services.404.feature3': 'Barra de búsqueda integrada',
+    'services.404.feature4': 'Enlaces a páginas principales',
+    'services.404.feature5': 'Animaciones atractivas',
+
+    // Páginas de Confirmación
+    'services.confirmation.title': 'Implementación de Páginas de Confirmación',
+    'services.confirmation.description': 'Creación de páginas que aparecen después de una acción del usuario, como el envío de un formulario.',
+    'services.confirmation.feature1': 'Confirmación visual clara',
+    'services.confirmation.feature2': 'Próximos pasos',
+    'services.confirmation.feature3': 'Botones de acción',
+    'services.confirmation.feature4': 'Compartir en redes',
+    'services.confirmation.feature5': 'Redirección automática',
+
+    // Animaciones Front‑End
+    'services.animations.title': 'Animaciones Front‑End',
+    'services.animations.description': 'Transforma tu interfaz en una obra animada, ofreciendo una experiencia de usuario envolvente y sofisticada.',
+    'services.animations.feature1': 'Micro‑interacciones',
+    'services.animations.feature2': 'Animaciones al hacer scroll',
+    'services.animations.feature3': 'Estados de carga',
+    'services.animations.feature4': 'Efectos hover',
+    'services.animations.feature5': 'Transiciones suaves',
+
+    // APIs RESTful
+    'services.restful.title': 'Desarrollo de APIs RESTful',
+    'services.restful.description': 'Creación de APIs RESTful robustas para interconectar el front‑end y el back‑end.',
+    'services.restful.feature1': 'Arquitectura REST',
+    'services.restful.feature2': 'Versionado de API',
+    'services.restful.feature3': 'Documentación Swagger',
+    'services.restful.feature4': 'Rate limiting',
+    'services.restful.feature5': 'CORS configurado',
+
+    // Bases de Datos
+    'services.database.title': 'Configuración de Bases de Datos',
+    'services.database.description': 'Configuración de bases de datos SQL o NoSQL como MySQL o MongoDB.',
+    'services.database.feature1': 'Modelado de datos',
+    'services.database.feature2': 'Migraciones y seeds',
+    'services.database.feature3': 'Índices optimizados',
+    'services.database.feature4': 'Backup y recuperación',
+    'services.database.feature5': 'Optimización de consultas',
+
+    // Autenticación
+    'services.auth.title': 'Autenticación y Autorización',
+    'services.auth.description': 'Implementación de sistemas de autenticación y autorización seguros, como JWT.',
+    'services.auth.feature1': 'Autenticación JWT',
+    'services.auth.feature2': 'OAuth 2.0',
+    'services.auth.feature3': 'Acceso basado en roles',
+    'services.auth.feature4': 'Gestión de sesiones',
+    'services.auth.feature5': 'Encriptación de contraseñas',
+
+    // Operaciones CRUD
+    'services.crud.title': 'Desarrollo de Operaciones CRUD',
+    'services.crud.description': 'Creación de operaciones CRUD (Create, Read, Update, Delete) para manipulación de datos.',
+    'services.crud.feature1': 'Operaciones Create',
+    'services.crud.feature2': 'Read y listado',
+    'services.crud.feature3': 'Actualización parcial/completa',
+    'services.crud.feature4': 'Soft delete',
+    'services.crud.feature5': 'Validación de datos',
+
+    // Projects
+    'projects.title': 'Proyectos',
+    'projects.filter.all': 'Todos',
+    'projects.filter.web': 'Web',
+    'projects.filter.mobile': 'Mobile',
+    'projects.filter.backend': 'Backend',
+    'projects.demo': 'Ver demo',
+    'projects.code': 'Ver código',
+    'projects.featured': 'Destacado',
+    // Project items
+    'projects.items.techcompass.title': 'Tech Compass',
+    'projects.items.techcompass.description': 'Aplicación moderna en React para descubrir carreras en tecnología mediante un cuestionario interactivo. Proyecto actualizado con las tecnologías más recientes del ecosistema React.',
+    'projects.items.wemoment_app.title': 'WeMoment - Aplicación Web para Parejas',
+    'projects.items.wemoment_app.description': 'Una aplicación web moderna y romántica para que las parejas registren, planifiquen y celebren sus momentos especiales juntos. Con diseño responsivo e interfaz intuitiva, ofrece una experiencia completa para organizar la vida en pareja.',
+    'projects.items.api_wemoment.title': 'API WeMoment',
+    'projects.items.api_wemoment.description': 'API RESTful construida con Express y Supabase para autenticación de usuarios del proyecto WeMoment. Ofrece endpoints para registro, login, recuperación de contraseña y perfil autenticado, además de configuración CORS dinámica.',
+    'projects.items.lp_wemoment.title': 'WeMoment – Landing Page',
+    'projects.items.lp_wemoment.description': 'Landing page moderna para presentar una super app que ayuda a las parejas a organizar citas, sueños y recuerdos en un solo lugar. Combina rendimiento, SEO avanzado, storytelling envolvente y una experiencia visual rica basada en un design system propio.',
+    'projects.items.eventflow.title': 'EventFlow',
+    'projects.items.eventflow.description': 'Plataforma moderna y minimalista para descubrir y participar en los mejores eventos, con diseño limpio, modo oscuro y animaciones suaves.',
+    'projects.items.stackid.title': 'StackID',
+    'projects.items.stackid.description': 'Aplicación web divertida e interactiva que genera una identidad tecnológica ("credencial tech") personalizada a partir de tu fecha de nacimiento. Como un “horóscopo para developers” — una herramienta lúdica para la comunidad tech.',
+    'projects.items.portal_tech.title': 'Portal de Noticias de Tecnología',
+    'projects.items.portal_tech.description': 'Homepage creada para ofrecer una experiencia intuitiva y moderna para usuarios de escritorio, destacando las últimas novedades en tecnología, inteligencia artificial, robótica e innovaciones digitales.',
+
+    // Contact
+    'contact.title': 'Contacto',
+    'contact.subtitle': 'Hablemos sobre tu proyecto',
+    'contact.form.name': 'Nombre',
+    'contact.form.email': 'Correo electrónico',
+    'contact.form.subject': 'Asunto',
+    'contact.form.message': 'Mensaje',
+    'contact.form.send': 'Enviar Mensaje',
+    'contact.form.sending': 'Enviando...',
+    'contact.form.success': '¡Mensaje enviado con éxito!',
+    'contact.form.success_description': '¡Te responderé en breve!',
+    'contact.form.error': 'Error al enviar el mensaje. Inténtalo de nuevo.',
+    'contact.form.placeholder.name': 'Tu nombre',
+    'contact.form.placeholder.email': 'tu@email.com',
+    'contact.form.placeholder.subject': 'Asunto del mensaje',
+    'contact.form.placeholder.message': 'Describe tu proyecto o duda...',
+    'contact.quick.title': 'Contacto Rápido',
+    'contact.whatsapp': 'WhatsApp',
+    'contact.linkedin': 'LinkedIn',
+    'contact.github': 'GitHub',
+    'contact.email': 'Email',
+    'contact.whatsapp.prefill': '¡Hola! Vi tu portafolio y me gustaría conversar.',
+    // Contact location
+    'contact.location.title': 'Ubicación',
+    'contact.location.city_country': 'São Paulo, Brasil',
+    'contact.location.available': 'Disponible para colaborar en proyectos en Brasil y en el exterior.',
+    'contact.location.hours': 'Horario comercial: 9h a 18h (GMT-3)',
+  },
   'pt-PT': {
+    // Theme
+    'theme.light': 'Claro',
+    'theme.dark': 'Escuro',
+    'theme.system': 'Sistema',
+    // Site
+    'site.name': 'Dario Reis',
     // Navigation
     'nav.home': 'Início',
     'nav.about': 'Sobre',
@@ -522,9 +900,25 @@ const translations = {
     
     // About
     'about.title': 'Sobre Mim',
-    'about.description': 'Desenvolvedor apaixonado por tecnologia com foco em JavaScript, React e Node.js. Experiência em criar aplicações web modernas, performantes e acessíveis.',
-    'about.download.cv': 'Download CV',
+    'about.description': 'Programador apaixonado por tecnologia com foco em JavaScript, React e Node.js. Experiência a criar aplicações web modernas, performantes e acessíveis.',
+    'about.download.cv': 'Descarregar CV',
     'about.timeline.title': 'Percurso Profissional',
+    'about.location.city_state': 'São Paulo, SP',
+    // About timeline items
+    'about.timeline.2025.probrain.title': 'Programador Front-end',
+    'about.timeline.2025.probrain.description': 'Trabalho no desenvolvimento de plataformas web modernas e escaláveis com ReactJS, Next.js e TypeScript. Implementação de componentes reutilizáveis, gestão de estado (Redux, Context API), integração com APIs REST e autenticação com AWS Cognito, com foco em performance e experiência do utilizador.',
+    'about.timeline.2025.security.title': 'Fundamentos de Cibersegurança',
+    'about.timeline.2025.security.description': 'Curso focado nos fundamentos de segurança da informação, boas práticas e proteção de aplicações.',
+    'about.timeline.2023.workana.title': 'Programador Web Front-end (Freelancer)',
+    'about.timeline.2023.workana.description': 'Criação de aplicações com React, Next.js, Vite e Node.js. Desenvolvimento de funcionalidades com Hooks, testes unitários com Jest e integração com APIs RESTful. Experiência em UI/UX para aplicações responsivas e escaláveis.',
+    'about.timeline.2023.esocial.title': 'Analista de eSocial',
+    'about.timeline.2023.esocial.description': 'Responsável pela criação de eventos em XML no eSocial (admissão, demissão, alterações cadastrais, etc.), garantindo conformidade legal e prazos. Manutenção de registos, análise e resolução de erros e validação de ficheiros XML.',
+    'about.timeline.2021.estacio.title': 'Licenciatura – Análise e Desenvolvimento de Sistemas',
+    'about.timeline.2021.estacio.description': 'Formação em desenvolvimento de software com foco em front-end e back-end, estruturas de dados e bases de dados relacionais.',
+    // About stats
+    'about.stats.projects': 'Projectos',
+    'about.stats.years': 'Anos Exp.',
+    'about.stats.clients': 'Clientes',
     
     // Services
     'services.title': 'Serviços',
@@ -683,6 +1077,22 @@ const translations = {
     'projects.filter.backend': 'Backend',
     'projects.demo': 'Ver Demo',
     'projects.code': 'Ver Código',
+    'projects.featured': 'Destaque',
+    // Project items
+    'projects.items.techcompass.title': 'Tech Compass',
+    'projects.items.techcompass.description': 'Uma aplicação React moderna para descobrir carreiras em tecnologia através de um questionário interativo. Projeto atualizado com as tecnologias mais recentes do ecossistema React.',
+    'projects.items.wemoment_app.title': 'WeMoment - Aplicativo Web para Casais',
+    'projects.items.wemoment_app.description': 'Um aplicativo web moderno e romântico desenvolvido especialmente para casais registarem, planearem e celebrarem os seus momentos especiais juntos. Com design responsivo e interface intuitiva, o app oferece uma experiência completa para organizar a vida a dois.',
+    'projects.items.api_wemoment.title': 'API WeMoment',
+    'projects.items.api_wemoment.description': 'API RESTful construída com Express e Supabase para autenticação de utilizadores do projeto WeMoment. O serviço oferece endpoints para cadastro, login, recuperação de palavra-passe e consulta de perfil autenticado, além de configuração CORS dinâmica para controlar o acesso a partir dos ambientes web do cliente.',
+    'projects.items.lp_wemoment.title': 'WeMoment – Landing Page',
+    'projects.items.lp_wemoment.description': 'Landing page moderna criada para apresentar um super app que ajuda casais a organizarem compromissos, sonhos e memórias num único lugar. O projeto combina performance, SEO avançado, storytelling envolvente e uma experiência visual rica construída sobre um design system próprio.',
+    'projects.items.eventflow.title': 'EventFlow',
+    'projects.items.eventflow.description': 'Uma plataforma moderna e minimalista para descobrir e participar nos melhores eventos, com design limpo, dark mode e animações suaves.',
+    'projects.items.stackid.title': 'StackID',
+    'projects.items.stackid.description': 'Aplicação web divertida e interativa que gera uma identidade tecnológica ("crachá tech") personalizada com base na sua data de nascimento. É como se fosse um "horóscopo para developers" — uma ferramenta lúdica para a comunidade de tecnologia.',
+    'projects.items.portal_tech.title': 'Portal de Notícias de Tecnologia',
+    'projects.items.portal_tech.description': 'Esta homepage foi criada para oferecer uma experiência intuitiva e moderna para utilizadores de desktop, destacando as últimas novidades em tecnologia, inteligência artificial, robótica e inovações digitais.',
     
     // Contact
     'contact.title': 'Contacto',
@@ -692,12 +1102,25 @@ const translations = {
     'contact.form.subject': 'Assunto',
     'contact.form.message': 'Mensagem',
     'contact.form.send': 'Enviar Mensagem',
+    'contact.form.sending': 'A enviar...',
     'contact.form.success': 'Mensagem enviada com sucesso!',
+    'contact.form.success_description': 'Retornarei em breve!',
     'contact.form.error': 'Erro ao enviar mensagem. Tente novamente.',
+    'contact.form.placeholder.name': 'O seu nome',
+    'contact.form.placeholder.email': 'o-seu@email.com',
+    'contact.form.placeholder.subject': 'Assunto da mensagem',
+    'contact.form.placeholder.message': 'Descreva o seu projecto ou dúvida...',
     'contact.quick.title': 'Contacto Rápido',
     'contact.whatsapp': 'WhatsApp',
     'contact.linkedin': 'LinkedIn',
     'contact.github': 'GitHub',
+    'contact.email': 'Email',
+    'contact.whatsapp.prefill': 'Olá! Vi o seu portefólio e gostaria de conversar.',
+    // Contact location
+    'contact.location.title': 'Localização',
+    'contact.location.city_country': 'São Paulo, Brasil',
+    'contact.location.available': 'Disponível para colaboração em projectos no Brasil e no exterior.',
+    'contact.location.hours': 'Horário comercial: 9h às 18h (GMT-3)',
     
     // FAQ
     'faq.title': 'Perguntas Frequentes',
@@ -746,7 +1169,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('language') as Language;
-      if (saved && ['pt-BR', 'en', 'pt-PT'].includes(saved)) {
+      if (saved && ['pt-BR', 'en', 'pt-PT', 'es'].includes(saved)) {
         return saved;
       }
       // Auto-detect browser language
@@ -754,12 +1177,21 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       if (browserLang.startsWith('pt-BR')) return 'pt-BR';
       if (browserLang.startsWith('pt-PT') || browserLang.startsWith('pt')) return 'pt-PT';
       if (browserLang.startsWith('en')) return 'en';
+      if (browserLang.startsWith('es')) return 'es';
     }
     return 'pt-BR';
   });
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations[typeof language]] || key;
+    const current = translations[language] as Record<string, string> | undefined;
+    const en = translations['en'] as Record<string, string> | undefined;
+    const ptBR = translations['pt-BR'] as Record<string, string> | undefined;
+    return (
+      (current && current[key]) ||
+      (en && en[key]) ||
+      (ptBR && ptBR[key]) ||
+      key
+    );
   };
 
   useEffect(() => {

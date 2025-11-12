@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ExternalLink, Github, Filter } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -8,11 +8,14 @@ import { useLanguage } from '../LanguageProvider';
 import techcompass from '../../../public/techcompass.png';
 import portalnoticias from '../../../public/portaldenoticias.png';
 import wemoment from '../../../public/wemoment.png';
+import lpwemoment from '../../../public/lpwemoment.png';
+import eventflow from '../../../public/EventFlow .png';
+import stackid from '../../../public/stackid.png';
 
 interface Project {
   id: number;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   image: string;
   technologies: string[];
   category: 'web' | 'mobile' | 'backend';
@@ -24,8 +27,8 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Tech Compass',
-    description: 'Uma aplicação React moderna para descobrir carreiras em tecnologia através de um questionário interativo. Projeto atualizado com as tecnologias mais recentes do ecossistema React.',
+    titleKey: 'projects.items.techcompass.title',
+    descriptionKey: 'projects.items.techcompass.description',
     image: techcompass,
     technologies: ['React', 'Vite', 'ESLint', 'JavaScript', 'CSS Puro', 'Gemini AI API', 'GitHub API'],
     category: 'web',
@@ -35,58 +38,59 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: 'WeMoment - Aplicativo Web para Casais',
-    description: 'Um aplicativo web moderno e romântico desenvolvido especialmente para casais registrarem, planejarem e celebrarem seus momentos especiais juntos. Com design responsivo e interface intuitiva, o app oferece uma experiência completa para organizar a vida a dois.',
+    titleKey: 'projects.items.wemoment_app.title',
+    descriptionKey: 'projects.items.wemoment_app.description',
     image: wemoment,
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Lucide React', 'React Context', 'useReducer', 'localStorage', 'FileReader API', 'Canvas API', 'Base64 Encoding'],
     category: 'web',
-    demoUrl: 'https://wemoment.darioreis.dev/',
+    demoUrl: 'https://app.wemoment.com.br/',
     githubUrl: 'https://github.com/darioreisjr/WeMoment',
     featured: true
   },
   {
     id: 3,
-    title: 'API Gateway',
-    description: 'Gateway de APIs com autenticação JWT, rate limiting, cache Redis e documentação automática com Swagger.',
+    titleKey: 'projects.items.api_wemoment.title',
+    descriptionKey: 'projects.items.api_wemoment.description',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop',
-    technologies: ['Node.js', 'Express', 'PostgreSQL', 'Redis', 'Docker'],
+    technologies: ['Node.js', 'Express', 'Supabase', 'cors', 'Dotenv'],
     category: 'backend',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/darioreisjr/api-wemoment',
     featured: true
   },
   {
     id: 4,
-    title: 'Portfolio Website',
-    description: 'Site portfolio responsivo com animações, tema dark/light e múltiplos idiomas.',
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=500&h=300&fit=crop',
-    technologies: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+    titleKey: 'projects.items.lp_wemoment.title',
+    descriptionKey: 'projects.items.lp_wemoment.description',
+    image: lpwemoment,
+    technologies: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'tailwindcss-animate', 'Lucide React', 'Framer Motion', 'Radix UI', '@tanstack/react-query', 'react-router-dom', 'react-helmet-async', '@vercel/analytics'],
     category: 'web',
-    demoUrl: '#',
-    githubUrl: '#'
+    demoUrl: 'https://www.wemoment.com.br',
+    githubUrl: 'https://github.com/darioreisjr/lp-wemoment'
   },
   {
     id: 5,
-    title: 'Fitness Tracker',
-    description: 'App de fitness com tracking de exercícios, métricas de saúde e integração com wearables.',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=300&fit=crop',
-    technologies: ['React Native', 'HealthKit', 'Google Fit', 'SQLite'],
-    category: 'mobile',
-    demoUrl: '#',
-    githubUrl: '#'
+    titleKey: 'projects.items.eventflow.title',
+    descriptionKey: 'projects.items.eventflow.description',
+    image: eventflow,
+    technologies: ['React', 'Vite ', 'CSS Variables ', 'PapaCSV', 'Intersection Observer'],
+    category: 'web',
+    demoUrl: 'https://eventos.cafebugado.com.br/',
+    githubUrl: 'https://github.com/darioreisjr/agendas_eventos'
   },
   {
     id: 6,
-    title: 'Real-time Chat API',
-    description: 'API de chat em tempo real com WebSockets, salas privadas e histórico de mensagens.',
-    image: 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=500&h=300&fit=crop',
-    technologies: ['Node.js', 'Socket.io', 'MongoDB', 'JWT'],
-    category: 'backend',
-    githubUrl: '#'
+    titleKey: 'projects.items.stackid.title',
+    descriptionKey: 'projects.items.stackid.description',
+    image: stackid,
+    technologies: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Frame motion', 'Lucide React', 'html-to-image', 'tsParticles', 'ESLint'],
+    category: 'web',
+    demoUrl: 'https://stackid.darioreis.dev/',
+    githubUrl: 'https://github.com/darioreisjr/stackid'
   },
   {
     id: 7,
-    title: 'Portal de Notícias de Tecnologia',
-    description: 'Esta homepage foi criada para oferecer uma experiência intuitiva e moderna para usuários de desktop, destacando as últimas novidades em tecnologia, inteligência artificial, robótica e inovações digitais.',
+    titleKey: 'projects.items.portal_tech.title',
+    descriptionKey: 'projects.items.portal_tech.description',
     image: portalnoticias,
     technologies: ['HTML5', 'CSS3', 'Git', 'Vercel'],
     category: 'web',
@@ -109,9 +113,23 @@ export function ProjectsSection() {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
 
+  // Compute visible categories based on existing projects
+  const availableFilterIds = new Set(projects.map((p) => p.category));
+  const visibleCategories = categories.filter(
+    (c) => c.id === 'all' || availableFilterIds.has(c.id as 'web' | 'mobile' | 'backend')
+  );
+
   const filteredProjects = activeFilter === 'all'
     ? projects
     : projects.filter(project => project.category === activeFilter);
+
+  // Ensure active filter is valid among visible categories
+  useEffect(() => {
+    const visibleIds = new Set(visibleCategories.map((c) => c.id));
+    if (!visibleIds.has(activeFilter)) {
+      setActiveFilter('all');
+    }
+  }, [activeFilter, visibleCategories]);
 
   return (
     <section className="min-h-screen px-4 py-20">
@@ -123,7 +141,7 @@ export function ProjectsSection() {
 
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-2">
-          {categories.map((category) => (
+          {visibleCategories.map((category) => (
             <Button
               key={category.id}
               variant={activeFilter === category.id ? "default" : "outline"}
@@ -158,12 +176,12 @@ export function ProjectsSection() {
                 <div className="relative overflow-hidden rounded-t-lg">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={t(project.titleKey)}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   {project.featured && (
                     <Badge className="absolute top-2 right-2 bg-primary text-primary-foreground">
-                      Featured
+                      {t('projects.featured')}
                     </Badge>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -184,9 +202,9 @@ export function ProjectsSection() {
 
               <CardContent className="p-6 space-y-4">
                 <div className="space-y-2">
-                  <CardTitle className="text-foreground">{project.title}</CardTitle>
+                  <CardTitle className="text-foreground">{t(project.titleKey)}</CardTitle>
                   <p className="text-sm text-muted-foreground line-clamp-3">
-                    {project.description}
+                    {t(project.descriptionKey)}
                   </p>
                 </div>
 

@@ -1,10 +1,15 @@
 import { Home, ArrowLeft, User, Briefcase, FolderOpen, MessageSquare } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
+import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = `${t('404.title')} | ${t('site.name')}`;
+  }, [t]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/20 px-4">
