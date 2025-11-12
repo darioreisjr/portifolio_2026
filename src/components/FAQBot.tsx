@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, X, Send, Minimize2 } from 'lucide-react';
+import { X, Send, Minimize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageProvider';
 
@@ -117,7 +117,11 @@ export function FAQBot() {
             className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary hover:bg-primary/90 text-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 group"
             aria-label="Abrir FAQ Bot"
           >
-            <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
+            <img
+              src="/airiBot.png"
+              alt="Airi"
+              className="w-14 h-14 rounded-full object-cover group-hover:scale-110 transition-transform"
+            />
             <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white animate-pulse" />
           </motion.button>
         )}
@@ -136,9 +140,11 @@ export function FAQBot() {
             {/* Cabeçalho */}
             <div className="bg-primary text-white p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <MessageCircle className="w-5 h-5" />
-                </div>
+                <img
+                  src="/airiBot.png"
+                  alt="Airi"
+                  className="w-10 h-10 rounded-full object-cover border border-white/30 bg-white/10"
+                />
                 <div>
                   <h3 className="font-semibold text-sm">{t('faq.bot.name')}</h3>
                   <p className="text-xs text-white/80">{t('faq.bot.status')}</p>
