@@ -1,335 +1,161 @@
 # 🚀 Portfolio Dario Reis - PWA Multilíngue
 
-Portfolio moderno e responsivo inspirado no VS Code, construído com React, Vite, TypeScript e Tailwind CSS. Suporte completo a PWA e múltiplos idiomas.
+Portfólio moderno, responsivo e multilíngue inspirado na interface do VS Code. Construído com React, Vite, TypeScript e Tailwind CSS, ele destaca projetos, serviços, trajetória profissional e canais de contato de forma imersiva, com animações fluidas e suporte a instalação como aplicativo (manifesto PWA).
 
 ![Portfolio Screenshot](https://github.com/user-attachments/assets/24487151-bff4-4613-9021-9c0d1d7dfbbc)
 
+## 📚 Sumário
+- [Visão Geral](#visão-geral)
+- [Destaques](#destaques)
+- [Tecnologias](#tecnologias)
+- [Estrutura de Pastas](#estrutura-de-pastas)
+- [Internacionalização](#internacionalização)
+- [Como rodar o projeto](#como-rodar-o-projeto)
+- [Scripts disponíveis](#scripts-disponíveis)
+- [CI/CD](#cicd)
+- [Boas práticas e padrões](#boas-práticas-e-padrões)
+- [Deploy](#deploy)
+- [Contato](#contato)
 
-## ✨ Características
+## Visão Geral
+- Layout completo inspirado no VS Code com titlebar, navegação lateral responsiva e status bar personalizados.
+- Experiência multilíngue (Português BR/PT, Inglês e Espanhol) com detecção, persistência e tradução de todo o conteúdo.
+- Seções animadas com Framer Motion, efeitos de digitação, cartões interativos e filtros para facilitar a navegação.
+- Manifesto PWA, ícones e metadados SEO prontos para instalação em dispositivos e compartilhamento em redes sociais.
+- Stack moderna com componentes shadcn/ui, gerenciamento de tema com persistência e base para requisições com React Query.
 
-### 🎨 Design e UX
-- **Tema VS Code**: Interface inspirada no Visual Studio Code com titlebar, tabs e status bar
-- **Dark/Light Mode**: Alternância de temas com persistência no localStorage
-- **Responsivo**: Design adaptativo para desktop, tablet e mobile
-- **Animações**: Transições suaves com Framer Motion e efeitos CSS customizados
-- **Efeito Água**: Animação fluida no menu de navegação desktop
+## Destaques
+### 🎨 Visual e UX
+- **Loading Screen animada** com barra de progresso, animação pulse e indicadores de carregamento. (`src/App.tsx`)
+- **Header VS Code** com seletor de idioma, alternância de tema (light/dark/system) e identificação da página atual. (`src/components/Header.tsx`)
+- **Navegação adaptativa**: menu lateral/flutuante em mobile e tabs com efeito "água" no desktop. (`src/components/Navigation.tsx`)
+- **Status Bar dinâmica** exibindo informações contextuais, horário e estado da aplicação. (`src/components/StatusBar.tsx`)
 
-### 🌍 Multilíngue
-- **3 Idiomas**: Português (BR), English (US), Português (PT)
-- **Detecção Automática**: Identifica idioma do navegador
-- **Rotas Localizadas**: URLs e conteúdo adaptados por idioma
-- **SEO Multilíngue**: Meta tags e structured data por idioma
+### 📄 Conteúdo interativo
+- **Home** com efeito typewriter, CTAs rápidos e vitrine de skills em cartões animados. (`src/components/sections/HomeSection.tsx`)
+- **Sobre** com linha do tempo profissional, estatísticas e destaque de formações. (`src/components/sections/AboutSection.tsx`)
+- **Serviços** organizados em cards com detalhes expandíveis e categorização por solução. (`src/components/sections/ServicesSection.tsx`)
+- **Projetos** com filtro por categoria, badges de tecnologias e ações rápidas para demo/GitHub. (`src/components/sections/ProjectsSection.tsx`)
+- **Contato** com formulário controlado, feedback via toasts, cartões de contato rápido (WhatsApp, LinkedIn, GitHub, E-mail) e informações de localização/horário. (`src/components/sections/ContactSection.tsx`)
+- **Página 404** altamente interativa com animações, navegação rápida e restauração do título da aba. (`src/pages/NotFound.tsx`)
 
-### 📱 PWA (Progressive Web App)
-- **Instalável**: Pode ser instalado como app nativo
-- **Offline Ready**: Service Worker para cache de recursos
-- **Ícones**: Conjunto completo de ícones para diferentes dispositivos
-- **Manifest**: Configuração completa para stores
+### 🤖 Assistente e engajamento
+- **FAQ Bot (Airi)**: chat flutuante com animações, lista de perguntas frequentes, mensagens temporizadas e suporte multilíngue. (`src/components/FAQBot.tsx`)
+- **Toasts e notificações** centralizados via `@/components/ui/toaster` e `sonner`, garantindo feedback consistente.
 
-### 🔧 Funcionalidades
-- **Seções Completas**: Home, Sobre, Serviços, Projetos, Contato
-- **Formulário de Contato**: Validação com Zod e envio via API
-- **Filtro de Projetos**: Filtragem por categoria (Web, Mobile, Backend)
-- **FAQ Interativo**: Acordeões com perguntas frequentes
-- **Links Sociais**: Integração com WhatsApp, LinkedIn, GitHub
+### 🌍 Internacionalização e acessibilidade
+- 4 idiomas com dicionário centralizado e fácil expansão. (`src/components/LanguageProvider.tsx`)
+- Títulos de página, CTA, formulários, mensagens e bot do FAQ traduzidos dinamicamente.
+- Detecção do idioma do navegador, persistência em localStorage e atualização do `document.title` conforme a rota.
 
-## 🛠️ Stack Tecnológica
+### ⚙️ Performance e fundamentos técnicos
+- Estrutura modular com providers para **tema**, **idioma** e **React Query** já configurados. (`src/App.tsx`)
+- Manifesto PWA, ícones maskable e meta tags completas (Open Graph, Twitter, Schema.org, preconnect). (`public/manifest.json`, `index.html`)
+- Rotas com React Router DOM, lazy transitions via `AnimatePresence` e efeitos controlados em todas as páginas. (`src/pages/Layout.tsx`)
 
-### Frontend
-- **React 18** - Biblioteca UI
-- **Vite** - Build tool e dev server
-- **TypeScript** - Tipagem estática
-- **Tailwind CSS** - Framework CSS utilitário
-- **Shadcn/ui** - Componentes UI reutilizáveis
+## Tecnologias
+**Core**
+- React 18 + TypeScript
+- Vite 5 (dev server e build)
+- React Router DOM
+- @tanstack/react-query (base para dados assíncronos)
 
-### Ferramentas
-- **React Hook Form** - Gerenciamento de formulários
-- **Zod** - Validação de schemas
-- **Lucide React** - Ícones SVG
-- **React Query** - Estado do servidor
-- **React Router DOM** - Roteamento
+**UI e animações**
+- Tailwind CSS + tailwind-merge + tailwindcss-animate
+- shadcn/ui (componentes Radix + design system)
+- Framer Motion (animações)
+- Radix UI (acessibilidade e interações avançadas)
+- Lucide React, React Icons
 
-### PWA & Performance
-- **Vite PWA** - Service Worker automático
-- **Web App Manifest** - Configuração de instalação
-- **Lazy Loading** - Carregamento otimizado
-- **Tree Shaking** - Bundle otimizado
+**Formulários e feedback**
+- shadcn/ui form helpers com react-hook-form (infra pronta)
+- Toasts via `@/components/ui/toaster` e Sonner
 
-## 🚀 Instalação e Desenvolvimento
+**Ferramentas e qualidade**
+- ESLint 9 com regras para React, Hooks e TypeScript
+- GitHub Actions para lint/build (feature, development, production)
+- Vercel rewrite configurado para SPA (`vercel.json`)
 
+## Estrutura de Pastas
+```
+src/
+├── App.tsx               # Composição de providers, rotas e loading screen
+├── components/
+│   ├── Header.tsx        # Titlebar VS Code + controles de idioma/tema
+│   ├── Navigation.tsx    # Menu responsivo
+│   ├── StatusBar.tsx     # Barra de status estilo editor
+│   ├── FAQBot.tsx        # Assistente de FAQ flutuante
+│   ├── ThemeProvider.tsx # Persistência e detecção de tema
+│   ├── LanguageProvider.tsx # Dicionário e hooks de tradução
+│   ├── sections/         # Seções reutilizadas nas páginas
+│   └── ui/               # Componentes base (shadcn/ui)
+├── hooks/                # Hooks utilitários (ex.: `use-mobile`)
+├── pages/                # Composição das páginas e layout com transições
+├── lib/                  # Utilidades compartilhadas
+└── main.tsx              # Montagem da aplicação React
+```
+
+## Internacionalização
+- Todas as chaves de texto vivem em `src/components/LanguageProvider.tsx`.
+- Para adicionar um idioma:
+  1. Inclua a sigla no tipo `Language`.
+  2. Adicione o dicionário completo no objeto `translations`.
+  3. Adicione a bandeira e nome ao seletor no `Header`.
+- O idioma é detectado pelo navegador na primeira visita e persistido em `localStorage`.
+- Rotas, títulos e mensagens do FAQ bot são traduzidas automaticamente.
+
+## Como rodar o projeto
 ### Pré-requisitos
 - Node.js 18+
-- npm ou yarn
+- npm (ou pnpm/bun se preferir, lockfiles incluídos)
 
-## 🔄 Fluxo de Desenvolvimento (CI/CD)
-
-Este repositório utiliza um fluxo de três etapas para promover código até a produção:
-
-1. **Branches de feature** abrem pull requests direcionados para `development`. Cada PR dispara o workflow **Validate Feature Branches**, que executa `npm run lint` e `npm run build` para garantir que o código esteja pronto para integrar.
-2. **Branch `development`** recebe os merges das features e, a cada push, aciona o workflow **Promote to Development**. Ele valida o código novamente e gera o bundle com `npm run build:dev`, servindo como ambiente de homologação.
-3. **Branch `main`** representa a produção. Um merge de `development` para `main` dispara o workflow **Promote to Production**, que executa lint e build em modo de produção antes da disponibilização final.
-
-Esse processo garante que todo código passe por validações automatizadas em cada estágio antes de chegar à produção.
-
-### Instalação
+### Passos
 ```bash
 # Clone o repositório
-git clone https://github.com/darioreisjr/portfolio-pwa.git
-
-# Entre no diretório
-cd portfolio-pwa
+git clone https://github.com/darioreisjr/portifolio_2026.git
+cd portifolio_2026
 
 # Instale as dependências
 npm install
 
-# Inicie o servidor de desenvolvimento
+# Ambiente de desenvolvimento (localhost:8080)
 npm run dev
 ```
 
-### Scripts Disponíveis
+## Scripts disponíveis
 ```bash
-# Desenvolvimento
-npm run dev
-
-# Build para produção
-npm run build
-
-# Preview da build
-npm run preview
-
-# Lint do código
-npm run lint
-
-# Type checking
-npm run type-check
+npm run dev       # Servidor de desenvolvimento com Vite
+npm run build     # Build de produção
+npm run build:dev # Build com variáveis de desenvolvimento (usado na pipeline)
+npm run preview   # Preview da build local
+npm run lint      # Lint da base com ESLint
 ```
 
-## 📁 Estrutura do Projeto
+## CI/CD
+Workflow automatizado com GitHub Actions (`.github/workflows`):
+1. **Validate Feature Branches** (`feature-validation.yml`): lint + build para PRs direcionados à `development`.
+2. **Promote to Development** (`development.yml`): lint + `npm run build:dev` a cada push na branch `development`.
+3. **Promote to Production** (`production.yml`): lint + `npm run build` a cada push na branch `main`.
 
-```
-src/
-├── components/
-│   ├── ui/                 # Componentes shadcn/ui
-│   ├── sections/           # Seções da página
-│   ├── Header.tsx          # Cabeçalho VS Code
-│   ├── Navigation.tsx      # Menu flutuante/mobile
-│   ├── StatusBar.tsx       # Barra de status
-│   ├── ThemeProvider.tsx   # Gerenciamento de tema
-│   └── LanguageProvider.tsx# Gerenciamento de idioma
-├── hooks/                  # Custom hooks
-├── lib/                    # Utilitários
-├── pages/                  # Páginas principais
-└── assets/                 # Recursos estáticos
+## Boas práticas e padrões
+- Código escrito em TypeScript com importações absolutas (`@/…`).
+- Classes utilitárias via Tailwind com `tailwind-merge` para evitar conflitos.
+- Animações encapsuladas com Framer Motion e variantes reutilizáveis.
+- Hooks e providers isolados para tema, idioma e responsividade.
+- Estrutura de componentes pronta para expansão de formulários com `react-hook-form` e validações (via Zod, se necessário).
 
-public/
-├── manifest.json           # PWA manifest
-├── icon-*.png             # Ícones PWA
-├── og-image.png           # Open Graph image
-└── robots.txt             # SEO
-```
+## Deploy
+- Build estática gerada em `dist/` via `npm run build`.
+- Arquivo `vercel.json` prepara o rewrite para Single Page Application (todas as rotas apontam para `/`).
+- Manifesto e ícones PWA residem em `public/` (`manifest.json`, `icon-192.png`, `icon-512.png`, etc.).
+- Hospedagem recomendada: **Vercel** ou qualquer provedor que sirva arquivos estáticos.
 
-## 🎨 Personalização
-
-### Cores e Tema
-As cores estão definidas no design system em `src/index.css`:
-
-```css
-:root {
-  /* VS Code Light Theme */
-  --primary: 213 78% 54%;        /* Azul principal */
-  --accent: 202 90% 56%;         /* Ciano destaque */
-  --success: 142 71% 45%;        /* Verde sucesso */
-  /* ... */
-}
-
-.dark {
-  /* VS Code Dark Theme */
-  --primary: 213 78% 54%;
-  --accent: 202 90% 56%;
-  /* ... */
-}
-```
-
-### Adicionando Idiomas
-1. Edite `src/components/LanguageProvider.tsx`
-2. Adicione as traduções no objeto `translations`
-3. Configure a nova flag no componente Header
-
-### Customizando Projetos
-Edite o array `projects` em `src/components/sections/ProjectsSection.tsx`:
-
-```typescript
-const projects: Project[] = [
-  {
-    id: 1,
-    title: 'Seu Projeto',
-    description: 'Descrição do projeto...',
-    image: 'url-da-imagem',
-    technologies: ['React', 'Node.js'],
-    category: 'web',
-    demoUrl: 'https://demo.com',
-    githubUrl: 'https://github.com/user/repo'
-  }
-];
-```
-
-### Configurando Serviços
-Modifique `src/components/sections/ServicesSection.tsx` para seus serviços:
-
-```typescript
-const services = [
-  {
-    icon: Globe,
-    titleKey: 'services.web.title',
-    descriptionKey: 'services.web.description',
-    priceKey: 'services.web.price',
-    // ...
-  }
-];
-```
-
-## 📧 Configuração de E-mail
-
-### Integração com EmailJS
-1. Crie conta no [EmailJS](https://emailjs.com)
-2. Configure seu template
-3. Adicione as variáveis de ambiente:
-
-```env
-VITE_EMAILJS_SERVICE_ID=your_service_id
-VITE_EMAILJS_TEMPLATE_ID=your_template_id
-VITE_EMAILJS_USER_ID=your_user_id
-```
-
-### Integração com Resend
-1. Crie conta no [Resend](https://resend.com)
-2. Configure API route em `pages/api/contact.ts`
-3. Adicione variável de ambiente:
-
-```env
-RESEND_API_KEY=your_api_key
-```
-
-## 🌐 SEO e Performance
-
-### Meta Tags Automáticas
-- **Title**: Personalizado por seção
-- **Description**: Otimizada para cada idioma
-- **Open Graph**: Imagens e textos dinâmicos
-- **Structured Data**: Schema.org para melhor indexação
-
-### Otimizações
-- **Lazy Loading**: Imagens carregadas sob demanda
-- **Code Splitting**: Bundles otimizados
-- **Tree Shaking**: Remoção de código não utilizado
-- **Preconnect**: DNS prefetch para recursos externos
-
-## 📱 PWA Features
-
-### Instalação
-O app pode ser instalado em:
-- **Desktop**: Chrome, Edge, Safari
-- **Android**: Chrome, Samsung Internet
-- **iOS**: Safari (Add to Home Screen)
-
-### Offline
-- Cache de shell da aplicação
-- Estratégia Cache First para recursos estáticos
-- Fallback pages para rotas offline
-
-### Notificações
-Para adicionar notificações push:
-1. Configure Firebase Cloud Messaging
-2. Adicione service worker personalizado
-3. Implemente subscription logic
-
-## 🚀 Deploy
-
-### Vercel (Recomendado)
-```bash
-# Instale Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel --prod
-```
-
-### Netlify
-```bash
-# Build
-npm run build
-
-# Deploy pasta dist/
-# Configure redirects para SPA
-```
-
-### GitHub Pages
-```bash
-# Instale gh-pages
-npm i -D gh-pages
-
-# Adicione script ao package.json
-"deploy": "gh-pages -d dist"
-
-# Deploy
-npm run deploy
-```
-
-## 📊 Analytics
-
-### Google Analytics
-1. Adicione GA4 tag no `index.html`
-2. Configure eventos customizados:
-
-```typescript
-// Exemplo de tracking
-gtag('event', 'contact_form_submit', {
-  event_category: 'engagement',
-  event_label: 'footer_form'
-});
-```
-
-### Outras Opções
-- **Plausible**: Analytics privacy-focused
-- **Mixpanel**: Analytics de eventos
-- **Hotjar**: Heatmaps e gravações
-
-## 🐛 Debugging
-
-### Console Logs
-```bash
-# Ver logs durante desenvolvimento
-npm run dev
-
-# Build com logs detalhados
-npm run build -- --debug
-```
-
-### PWA Testing
-- **Chrome DevTools**: Application tab > Service Workers
-- **Lighthouse**: PWA audit automático
-- **PWA Builder**: Microsoft PWA testing tools
-
-## 📄 Licença
-
-MIT License - veja [LICENSE](LICENSE) para detalhes.
-
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -m 'Add nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
-## 📞 Contato
-
+## Contato
 **Dario Reis**
 - 💼 [LinkedIn](https://linkedin.com/in/darioreisjr)
 - 🐙 [GitHub](https://github.com/darioreisjr)
-- 📧 [Email](mailto:email@exemplo.com)
-- 📱 [WhatsApp](https://wa.me/5511999999999)
+- 📧 [dev.darioreis@gmail.com](mailto:dev.darioreis@gmail.com)
+- 📱 [WhatsApp](https://wa.me/5511961889886)
 
 ---
-
-⭐ **Se este projeto te ajudou, deixe uma estrela!**
+⭐ Se este projeto te ajudou, deixe uma estrela!
