@@ -62,7 +62,7 @@ const languageNames = {
 };
 
 export function Header() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { resolvedTheme, toggleTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
 
@@ -116,32 +116,14 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Theme Selector */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm">
-                {resolvedTheme === 'dark' ? (
-                  <Moon className="w-4 h-4" />
-                ) : (
-                  <Sun className="w-4 h-4" />
-                )}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-popover border border-border">
-              <DropdownMenuItem onClick={() => setTheme('light')} className="cursor-pointer">
-                <Sun className="w-4 h-4 mr-2" />
-                {t('theme.light')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme('dark')} className="cursor-pointer">
-                <Moon className="w-4 h-4 mr-2" />
-                {t('theme.dark')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme('system')} className="cursor-pointer">
-                <Monitor className="w-4 h-4 mr-2" />
-                {t('theme.system')}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Theme Toggle */}
+          <Button variant="ghost" size="sm" onClick={toggleTheme}>
+            {resolvedTheme === 'dark' ? (
+              <Moon className="w-4 h-4" />
+            ) : (
+              <Sun className="w-4 h-4" />
+            )}
+          </Button>
         </div>
       </div>
     </header>

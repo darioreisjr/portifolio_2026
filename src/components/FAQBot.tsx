@@ -114,7 +114,7 @@ export function FAQBot() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleBot}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary hover:bg-primary/90 text-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 group"
+            className="fixed bottom-20 md:bottom-6 right-6 z-50 w-14 h-14 bg-primary hover:bg-primary/90 text-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 group"
             aria-label="Abrir FAQ Bot"
           >
             <img
@@ -135,7 +135,7 @@ export function FAQBot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] shadow-2xl rounded-2xl overflow-hidden border border-border bg-card"
+            className="fixed bottom-20 md:bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] shadow-2xl rounded-2xl overflow-hidden border border-border bg-card"
           >
             {/* Cabeçalho */}
             <div className="bg-primary text-white p-4 flex items-center justify-between">
