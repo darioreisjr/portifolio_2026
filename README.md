@@ -58,8 +58,18 @@ Portfolio moderno e responsivo inspirado no VS Code, construído com React, Vite
 ## 🚀 Instalação e Desenvolvimento
 
 ### Pré-requisitos
-- Node.js 18+ 
+- Node.js 18+
 - npm ou yarn
+
+## 🔄 Fluxo de Desenvolvimento (CI/CD)
+
+Este repositório utiliza um fluxo de três etapas para promover código até a produção:
+
+1. **Branches de feature** abrem pull requests direcionados para `development`. Cada PR dispara o workflow **Validate Feature Branches**, que executa `npm run lint` e `npm run build` para garantir que o código esteja pronto para integrar.
+2. **Branch `development`** recebe os merges das features e, a cada push, aciona o workflow **Promote to Development**. Ele valida o código novamente e gera o bundle com `npm run build:dev`, servindo como ambiente de homologação.
+3. **Branch `main`** representa a produção. Um merge de `development` para `main` dispara o workflow **Promote to Production**, que executa lint e build em modo de produção antes da disponibilização final.
+
+Esse processo garante que todo código passe por validações automatizadas em cada estágio antes de chegar à produção.
 
 ### Instalação
 ```bash

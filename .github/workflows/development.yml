@@ -1,0 +1,30 @@
+name: Promote to Development
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build-development:
+    name: Build Development Bundle
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint codebase
+        run: npm run lint
+
+      - name: Build development bundle
+        run: npm run build:dev
