@@ -295,9 +295,9 @@ const translations = {
     'faq.6.question': 'Quais são as formas de pagamento?',
     'faq.6.answer': 'Transferência bancária ou cartão de crédito. Parcelamento em até 3x sem juros para projetos acima de R$ 5.000.',
     // FAQ Bot
-  'faq.bot.name': 'Assistente Virtual',
-  'faq.bot.status': 'Online agora',
-  'faq.welcome': 'Olá! 👋 Sou o assistente virtual do Dario. Selecione uma pergunta abaixo para saber mais sobre a trajetória profissional dele.',
+    'faq.bot.name': 'Airi',
+    'faq.bot.status': 'Online agora',
+    'faq.welcome': 'Olá! 👋 Sou a Airi, assistente virtual do Dario. Selecione uma pergunta abaixo para saber mais sobre a trajetória profissional dele.',
   'faq.select.question': 'Selecione uma pergunta:',
   
   // Perguntas
@@ -589,9 +589,9 @@ const translations = {
     'faq.6.question': 'What are the payment methods?',
     'faq.6.answer': 'Bank transfer or credit card. Installments up to 3x interest-free for projects over $2,500.',
     // FAQ Bot
-  'faq.bot.name': 'Virtual Assistant',
-  'faq.bot.status': 'Online now',
-  'faq.welcome': 'Hello! 👋 I\'m Dario\'s virtual assistant. Select a question below to learn more about his professional background.',
+    'faq.bot.name': 'Airi',
+    'faq.bot.status': 'Online now',
+    'faq.welcome': 'Hello! 👋 I\'m Airi, Dario\'s virtual assistant. Select a question below to learn more about his professional background.',
   'faq.select.question': 'Select a question:',
   
   // Questions
@@ -1137,9 +1137,9 @@ const translations = {
     'faq.6.question': 'Quais são as formas de pagamento?',
     'faq.6.answer': 'Transferência bancária ou cartão. Parcelamento em até 3x sem juros para projectos acima de €2.500.',
     // FAQ Bot
-  'faq.bot.name': 'Assistente Virtual',
-  'faq.bot.status': 'Online agora',
-  'faq.welcome': 'Olá! 👋 Sou o assistente virtual do Dario. Selecione uma pergunta abaixo para saber mais sobre o percurso profissional dele.',
+    'faq.bot.name': 'Airi',
+    'faq.bot.status': 'Online agora',
+    'faq.welcome': 'Olá! 👋 Sou a Airi, assistente virtual do Dario. Selecione uma pergunta abaixo para saber mais sobre o percurso profissional dele.',
   'faq.select.question': 'Selecione uma pergunta:',
   
   // Perguntas
