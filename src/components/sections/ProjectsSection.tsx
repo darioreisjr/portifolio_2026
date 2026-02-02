@@ -9,8 +9,8 @@ import techcompass from '../../../public/techcompass.png';
 import portalnoticias from '../../../public/portaldenoticias.png';
 import wemoment from '../../../public/wemoment.png';
 import lpwemoment from '../../../public/lpwemoment.png';
-import eventflow from '../../../public/EventFlow .png';
 import stackid from '../../../public/stackid.png';
+import eventosCafeBugado from '../../../public/eventosCafeBugado.png';
 
 interface Project {
   id: number;
@@ -27,6 +27,17 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    titleKey: 'projects.items.eventos_cafe_bugado.title',
+    descriptionKey: 'projects.items.eventos_cafe_bugado.description',
+    image: eventosCafeBugado,
+    technologies: ['React', 'React Router DOM', 'React Hook Form', 'Lucide React', 'Vite', 'Supabase', 'Vitest', 'Testing Library', 'MSW', 'jsdom'],
+    category: 'web',
+    demoUrl: 'https://eventos.cafebugado.com.br/',
+    githubUrl: 'https://github.com/cafebugado/eventos',
+    featured: false
+  },
+  {
+    id: 2,
     titleKey: 'projects.items.techcompass.title',
     descriptionKey: 'projects.items.techcompass.description',
     image: techcompass,
@@ -37,7 +48,7 @@ const projects: Project[] = [
     featured: true
   },
   {
-    id: 2,
+    id: 3,
     titleKey: 'projects.items.wemoment_app.title',
     descriptionKey: 'projects.items.wemoment_app.description',
     image: wemoment,
@@ -48,7 +59,7 @@ const projects: Project[] = [
     featured: true
   },
   {
-    id: 3,
+    id: 4,
     titleKey: 'projects.items.api_wemoment.title',
     descriptionKey: 'projects.items.api_wemoment.description',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=300&fit=crop',
@@ -58,7 +69,7 @@ const projects: Project[] = [
     featured: true
   },
   {
-    id: 4,
+    id: 5,
     titleKey: 'projects.items.lp_wemoment.title',
     descriptionKey: 'projects.items.lp_wemoment.description',
     image: lpwemoment,
@@ -66,16 +77,6 @@ const projects: Project[] = [
     category: 'web',
     demoUrl: 'https://www.wemoment.com.br',
     githubUrl: 'https://github.com/darioreisjr/lp-wemoment'
-  },
-  {
-    id: 5,
-    titleKey: 'projects.items.eventflow.title',
-    descriptionKey: 'projects.items.eventflow.description',
-    image: eventflow,
-    technologies: ['React', 'Vite ', 'CSS Variables ', 'PapaCSV', 'Intersection Observer'],
-    category: 'web',
-    demoUrl: 'https://eventos.cafebugado.com.br/',
-    githubUrl: 'https://github.com/darioreisjr/agendas_eventos'
   },
   {
     id: 6,
@@ -159,11 +160,11 @@ export function ProjectsSection() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
           {filteredProjects.map((project) => (
             <MotionCard
               key={project.id}
-              className={`bg-card border-border group ${project.featured ? 'ring-2 ring-primary/20' : ''}`}
+              className={`bg-card border-border group h-full flex flex-col ${project.featured ? 'ring-2 ring-primary/20' : ''}`}
               whileHover={{
                 scale: 1.03,
                 borderColor: 'hsl(var(--primary) / 0.5)',
@@ -200,23 +201,37 @@ export function ProjectsSection() {
                 </div>
               </CardHeader>
 
-              <CardContent className="p-6 space-y-4">
-                <div className="space-y-2">
-                  <CardTitle className="text-foreground">{t(project.titleKey)}</CardTitle>
+              <CardContent className="p-6 flex flex-col flex-1">
+                {/* Título - altura fixa */}
+                <div className="h-14 mb-2">
+                  <CardTitle className="text-foreground line-clamp-2">{t(project.titleKey)}</CardTitle>
+                </div>
+
+                {/* Descrição - altura fixa */}
+                <div className="h-16 mb-4">
                   <p className="text-sm text-muted-foreground line-clamp-3">
                     {t(project.descriptionKey)}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1">
-                  {project.technologies.map((tech) => (
-                    <Badge key={tech} variant="secondary" className="text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
+                {/* Tecnologias - altura fixa com scroll se necessário */}
+                <div className="h-20 mb-4 overflow-hidden">
+                  <div className="flex flex-wrap gap-1">
+                    {project.technologies.slice(0, 6).map((tech) => (
+                      <Badge key={tech} variant="secondary" className="text-xs">
+                        {tech}
+                      </Badge>
+                    ))}
+                    {project.technologies.length > 6 && (
+                      <Badge variant="outline" className="text-xs">
+                        +{project.technologies.length - 6}
+                      </Badge>
+                    )}
+                  </div>
                 </div>
 
-                <div className="flex gap-2 pt-2">
+                {/* Botões - sempre no final */}
+                <div className="flex gap-2 mt-auto pt-2">
                   {project.demoUrl && (
                     <Button
                       size="sm"
