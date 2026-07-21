@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
-import { Globe, Smartphone, Server, Users, FileText, Monitor, Layout, Plug, Briefcase, AlertCircle, CheckCircle, Sparkles, Code, Database, Lock, Edit } from 'lucide-react';
+import { Globe, Smartphone, Server, Users, FileText, Monitor, Layout, Plug, Briefcase, AlertCircle, CheckCircle, Sparkles, Code, Database, Lock, Edit, type LucideIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useLanguage } from '../LanguageProvider';
 import { motion, useInView } from 'framer-motion';
 
 interface Service {
-  icon: any;
+  icon: LucideIcon;
   titleKey: string;
   descriptionKey: string;
   color: string;
