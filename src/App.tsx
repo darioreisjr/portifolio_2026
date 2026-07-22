@@ -16,7 +16,16 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import { FAQBot } from "./components/FAQBot";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 10 * 60 * 1000, // 10 minutos: evita refetch repetido enquanto os dados ainda são considerados atuais
+      gcTime: 30 * 60 * 1000, // 30 minutos: mantém em cache mesmo sem observadores ativos
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  },
+});
 
 // Componente de Loading Screen
 const LoadingScreen = () => {
