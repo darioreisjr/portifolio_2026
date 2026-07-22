@@ -1,48 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Download, ExternalLink, Github, Linkedin } from 'lucide-react';
+import { ArrowRight, Download, ExternalLink, Github, Linkedin, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useQuery } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '../LanguageProvider';
 import { useNavigate } from 'react-router-dom';
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiExpress,
-  SiNestjs,
-  SiGraphql,
-  SiAmazonwebservices,
-  SiDocker,
-  SiGit,
-  SiPostgresql,
-  SiMongodb,
-  SiPrisma
-} from 'react-icons/si';
-import { FaBrain, FaRobot } from 'react-icons/fa';
-import { VscGithubAction } from 'react-icons/vsc';
-
-const skills = [
-  { name: 'React.js', icon: SiReact, color: 'text-[#61DAFB]' },
-  { name: 'Next.js', icon: SiNextdotjs, color: 'text-white' },
-  { name: 'TypeScript', icon: SiTypescript, color: 'text-[#3178C6]' },
-  { name: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-[#06B6D4]' },
-  { name: 'Node.js', icon: SiNodedotjs, color: 'text-[#339933]' },
-  { name: 'Express', icon: SiExpress, color: 'text-white' },
-  { name: 'NestJS', icon: SiNestjs, color: 'text-[#E0234E]' },
-  { name: 'REST/GraphQL', icon: SiGraphql, color: 'text-[#E10098]' },
-  { name: 'AWS', icon: SiAmazonwebservices, color: 'text-[#FF9900]' },
-  { name: 'Docker', icon: SiDocker, color: 'text-[#2496ED]' },
-  { name: 'Git', icon: SiGit, color: 'text-[#F05032]' },
-  { name: 'CI/CD', icon: VscGithubAction, color: 'text-[#2088FF]' },
-  { name: 'PostgreSQL', icon: SiPostgresql, color: 'text-[#4169E1]' },
-  { name: 'MongoDB', icon: SiMongodb, color: 'text-[#47A248]' },
-  { name: 'Prisma', icon: SiPrisma, color: 'text-[#2D3748]' },
-  { name: 'Machine Learning', icon: FaBrain, color: 'text-[#FF6F00]' },
-  { name: 'APIs de IA', icon: FaRobot, color: 'text-[#9C27B0]' },
-];
+import { fetchTechnologies } from '@/services/technologies';
 
 // Variantes de animação
 const containerVariants = {
@@ -144,6 +108,11 @@ export function HomeSection() {
   const navigate = useNavigate();
   const [typingText, setTypingText] = useState('');
   const fullText = t('home.title');
+
+  const { data: technologies = [] } = useQuery({
+    queryKey: ['technologies'],
+    queryFn: fetchTechnologies,
+  });
 
   useEffect(() => {
     let i = 0;
@@ -310,28 +279,34 @@ export function HomeSection() {
           </motion.h3>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {skills.map((skill, index) => {
-              const IconComponent = skill.icon;
-              return (
-                <motion.div
-                  key={skill.name}
-                  custom={index}
-                  variants={skillCardVariants}
-                  whileHover="hover"
+            {technologies.map((tech, index) => (
+              <motion.div
+                key={tech.id}
+                custom={index}
+                variants={skillCardVariants}
+                whileHover="hover"
+              >
+                <Card
+                  className="bg-card border-border hover:border-primary transition-all duration-300 cursor-pointer"
                 >
-                  <Card 
-                    className="bg-card border-border hover:border-primary transition-all duration-300 cursor-pointer"
-                  >
-                    <CardContent className="flex flex-col items-center justify-center p-4 space-y-2 min-h-[100px]">
-                      <IconComponent className={`w-8 h-8 ${skill.color}`} />
-                      <span className="text-[10px] font-medium text-center text-card-foreground whitespace-nowrap">
-                        {skill.name}
-                      </span>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              );
-            })}
+                  <CardContent className="flex flex-col items-center justify-center p-4 space-y-2 min-h-[100px]">
+                    {tech.iconUrl ? (
+                      <img
+                        src={tech.iconUrl}
+                        alt={tech.name}
+                        className="w-8 h-8 object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <Code2 className="w-8 h-8 text-muted-foreground" />
+                    )}
+                    <span className="text-[10px] font-medium text-center text-card-foreground whitespace-nowrap">
+                      {tech.name}
+                    </span>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </motion.div>
